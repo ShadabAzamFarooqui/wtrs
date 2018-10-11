@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp">
+
+            <RadioButton
+                android:id="@+id/customer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="Customer" />
+
+            <RadioButton
+                android:id="@+id/supplier"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Supplier" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/name"
+            style="@style/LoginSignUp1Input"
+            android:hint="Enter Name"
+            android:inputType="textCapWords" />
+
+        <EditText
+            android:id="@+id/shop_name"
+            style="@style/LoginSignUp1Input"
+            android:hint="Shop Name"
+            android:inputType="textCapWords" />
+
+        <EditText
+            android:id="@+id/email"
+            style="@style/LoginSignUp1Input"
+            android:hint="Enter Email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/mobile"
+            style="@style/LoginSignUp1Input"
+            android:hint="Enter Mobile"
+            android:inputType="number"
+            android:maxLength="10" />
+
+        <EditText
+            android:id="@+id/password"
+            style="@style/LoginSignUp1Input"
+            android:hint="Enter Password"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/confirmPassword"
+            style="@style/LoginSignUp1Input"
+            android:hint="Confirm Password"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/address"
+            style="@style/LoginSignUp1Input"
+            android:hint="Enter Address" />
+
+        <EditText
+            android:id="@+id/code"
+            style="@style/LoginSignUp1Input"
+            android:hint="Enter Supplier Code"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/delivery_distance"
+            style="@style/LoginSignUp1Input"
+            android:hint="Enter Deliver Distance Up To..."
+            android:inputType="textPassword" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@android:color/white"
+            android:gravity="left"
+            android:id="@+id/delivertimeLayout"
+            android:textColor="@android:color/black"
+            android:textCursorDrawable="@drawable/loginsignup_color_cursor"
+            android:textSize="16sp">
+
+            <ImageView
+                android:id="@+id/timeFrom"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="timeFrom"
+                android:padding="7dp"
+                android:src="@drawable/clock" />
+
+            <ImageView
+                android:id="@+id/timeTo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="timeTo"
+                android:padding="7dp"
+                android:src="@drawable/clock" />
+
+            <Spinner
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.3"
+                android:background="@android:color/white"
+                android:spinnerMode="dialog"
+                android:entries="@array/deliverTime"></Spinner>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/show_time"
+            android:paddingLeft="17dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/add_water_layout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/black_border_fold_corner">
+
+            <TextView
+                android:id="@+id/remove_view"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/minus2"
+                android:gravity="center" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="5"
+                android:gravity="center"
+                android:text="Add/Remove Water"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/add_view"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/plus2"
+                android:gravity="center" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/add_water"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"></LinearLayout>
+
+        <Button
+            android:id="@+id/submit"
+            style="@style/ButtonOrange"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="30dp"
+            android:text="Create An Account"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="By clicking Create An Account you agree to our " />
+
+            <TextView
+                android:id="@+id/txtTermService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Term of Services"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:textCursorDrawable="@drawable/loginsignup_color_cursor"
+    android:textSize="16sp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/orderName"
+            android:layout_width="0dp"
+            android:layout_weight=".6"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:paddingLeft="10dp"
+            android:text="ORD1598"
+            android:textColor="#292929"
+            android:textSize="12dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:textAlignment="center"
+            android:textSize="12dp"
+            android:text="wQty"
+            android:id="@+id/waterQty"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:textAlignment="center"
+            android:textSize="12dp"
+            android:text="bQty"
+            android:id="@+id/bottleQty"
+            android:textColor="@color/black" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".6"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:visibility="gone"
+            android:textAlignment="center"
+            android:textSize="12dp"
+            android:text="(wRate+bRate)"
+            android:id="@+id/rate"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:textAlignment="textEnd"
+            android:textSize="12dp"
+            android:text="\u20B9"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/orderRate"
+            android:layout_width="0dp"
+            android:layout_weight=".2"
+            android:layout_height="wrap_content"
+            android:text="20"
+            android:textColor="#292929"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

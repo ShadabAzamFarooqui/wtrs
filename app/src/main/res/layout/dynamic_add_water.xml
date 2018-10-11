@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp"
+    android:orientation="horizontal"
+    android:textCursorDrawable="@drawable/loginsignup_color_cursor">
+
+
+
+        <EditText
+            android:id="@+id/water_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="12"
+            android:inputType="textCapWords"
+            android:text="Normal Water"
+            android:textSize="@dimen/textSize" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="₹"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/water_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_marginLeft="5dp"
+            android:hint="Water Rate"
+            android:maxLength="3"
+            android:textSize="@dimen/textSize"
+            android:inputType="numberDecimal"
+            android:textAlignment="textStart" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="₹"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/bottle_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_marginLeft="5dp"
+            android:hint="Bottle Rate"
+            android:maxLength="3"
+            android:textSize="@dimen/textSize"
+            android:inputType="numberDecimal"
+            android:textAlignment="textStart" />
+    </LinearLayout>
+
+
+
+
+

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp">
+
+            <RadioButton
+                android:id="@+id/customer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="Customer" />
+
+            <RadioButton
+                android:id="@+id/supplier"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Supplier" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/customerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/name"
+                style="@style/LoginSignUp1Input"
+                android:hint="Enter Name"
+                android:inputType="textCapWords" />
+
+
+            <EditText
+                android:id="@+id/email"
+                style="@style/LoginSignUp1Input"
+                android:hint="Enter Email"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/mobile"
+                style="@style/LoginSignUp1Input"
+                android:hint="Enter Mobile"
+                android:inputType="number"
+                android:maxLength="10" />
+
+            <EditText
+                android:id="@+id/password"
+                style="@style/LoginSignUp1Input"
+                android:hint="Enter Password"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/confirmPassword"
+                style="@style/LoginSignUp1Input"
+                android:hint="Confirm Password"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/address"
+                style="@style/LoginSignUp1Input"
+                android:layout_height="wrap_content"
+                android:hint="Enter Address"
+                android:inputType="textCapWords" />
+
+
+            <LinearLayout
+                android:id="@+id/add_water"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"></LinearLayout>
+
+            <Button
+                android:id="@+id/submit"
+                style="@style/ButtonOrange"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="30dp"
+                android:text="Create An Account"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/terms"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="By clicking Create An Account you agree to our " />
+
+                <TextView
+                    android:id="@+id/txtTermService"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Term of Services"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/supplierLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/code"
+                style="@style/LoginSignUp1Input"
+                android:hint="Enter Supplier Code"
+                android:inputType="textPassword" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:checked="true"
+                android:text="Don't have supplier code" />
+
+            <TextView
+                android:id="@+id/hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:textSize="12sp"
+                android:paddingRight="15dp"
+                android:text="@string/supplierSignUp" />
+
+            <Button
+                android:id="@+id/verifyCode"
+                style="@style/ButtonOrange"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="17dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="10dp"
+                android:text="Verify Supplier Code"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
+
+
+

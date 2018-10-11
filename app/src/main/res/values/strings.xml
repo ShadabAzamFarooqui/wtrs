@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">wtrs</string>
+    <string name="msg_perms_needed">Turn on your Location</string>
+    <string name="btn_quit">Quit</string>
+    <string name="btn_accept">Accept</string>
+
+    <string name="notification_error_ssl_cert_invalid">notification_error_ssl_cert_invalid</string>
+    <string name="supplierSignUp">You need to get the supplier code. You may send a mail to this "'support@jalsewa.com'" or leave a text message with  text "'GetSupplier'" to "'0123456789'". We will get back to you soon. \nThank you</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="powered_by">wtrs.com</string>
+
+
+    <string-array name="deliverTime">
+        <item>Deliver with in</item>
+        <item>1 hour</item>
+        <item>2 hour</item>
+        <item>3 hour</item>
+        <item>4 hour</item>
+        <item>5 hour</item>
+    </string-array>
+</resources>

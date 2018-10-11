@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <include
+        layout="@layout/app_bar_supplier"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="250dp"
+        android:layout_height="fill_parent"
+        android:layout_gravity="start"
+        android:background="#fff"
+        app:headerLayout="@layout/header">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="200dp"
+            android:orientation="vertical">
+
+
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="#e2e2e2" />
+
+
+                    <LinearLayout
+                        android:id="@+id/account_info_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+
+                        android:gravity="center"
+                        android:onClick="myAccount"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:layout_weight="0.1"
+                            android:onClick="myAccount"
+                            android:src="@drawable/my_account" />
+
+
+                        <TextView
+                            style="@style/Gotham_Book"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="0.9"
+                            android:onClick="myAccount"
+                            android:clickable="true"
+                            android:gravity="center_vertical"
+                            android:text="My Account"
+                            android:textColor="#cc000000"
+                            android:textSize="16sp" />
+
+
+                    </LinearLayout>
+
+
+
+
+
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="#e2e2e2" />
+
+                    <LinearLayout
+                        android:id="@+id/expanse_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:onClick="history"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:layout_weight="0.1"
+                            android:onClick="history"
+                            android:src="@drawable/icon_calendar"/>
+
+
+                        <TextView
+                            style="@style/Gotham_Book"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="0.9"
+                            android:clickable="true"
+                            android:onClick="history"
+                            android:gravity="center_vertical"
+                            android:text="History"
+                            android:textColor="#cc000000"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="#e2e2e2" />
+
+
+                    <LinearLayout
+                        android:id="@+id/ledger_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:layout_weight="0.1"
+                            android:src="@drawable/about_us" />
+
+
+                        <TextView
+                            style="@style/Gotham_Book"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="0.9"
+                            android:clickable="true"
+                            android:gravity="center_vertical"
+                            android:text="About Us"
+                            android:textColor="#cc000000"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="#e2e2e2" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:layout_weight="0.1"
+                            android:src="@drawable/rate_us" />
+
+
+                        <TextView
+                            style="@style/Gotham_Book"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="0.9"
+                            android:clickable="true"
+                            android:gravity="center_vertical"
+                            android:text="Rate Us"
+                            android:textColor="#cc000000"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="#e2e2e2" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:onClick="share"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:layout_weight="0.1"
+                            android:onClick="share"
+                            android:src="@drawable/share" />
+
+
+                        <TextView
+                            style="@style/Gotham_Book"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="0.9"
+                            android:clickable="true"
+                            android:onClick="share"
+                            android:gravity="center_vertical"
+                            android:text="Share"
+                            android:textColor="#cc000000"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="#e2e2e2" />
+
+                    <LinearLayout
+                        android:id="@+id/tnc_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:layout_weight="0.1"
+                            android:src="@drawable/terms" />
+
+
+                        <TextView
+                            style="@style/Gotham_Book"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="0.9"
+                            android:clickable="true"
+                            android:gravity="center_vertical"
+                            android:text="Terms &amp; Conditions"
+                            android:textColor="#cc000000"
+                            android:textSize="16sp" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="#e2e2e2" />
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:weightSum="1">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_above="@+id/lkin"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="20dp"
+                            android:src="@drawable/water2" />
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/lkin"
+                            android:layout_gravity="bottom"
+                            android:gravity="center"
+                            android:text="Powered by"
+                            android:textSize="10sp" />
+
+                        <com.example.berylsystems.watersupply.utils.BuzzTextView
+                            android:layout_width="fill_parent"
+                            style="@style/Gotham_Book"
+                            android:textColor="@color/black"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
+                            android:text="@string/powered_by"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="#e2e2e2" />
+
+                </LinearLayout>
+            </ScrollView>
+
+
+        </LinearLayout>
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>

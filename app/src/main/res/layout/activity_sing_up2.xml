@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/name"
+            android:hint="Enter Name"
+            android:inputType="textCapWords"
+            style="@style/LoginSignUp1Input" />
+
+        <EditText
+            android:id="@+id/shop_name"
+            android:hint="Shop Name"
+            android:inputType="textCapWords"
+            style="@style/LoginSignUp1Input" />
+
+        <EditText
+            android:id="@+id/email"
+            android:hint="Enter Email"
+            android:inputType="textEmailAddress"
+            style="@style/LoginSignUp1Input"/>
+
+
+        <EditText
+            android:id="@+id/mobile"
+            style="@style/LoginSignUp1Input"
+            android:hint="Enter Mobile"
+            android:inputType="number"
+            android:maxLength="10"/>
+
+
+        <EditText
+            android:id="@+id/password"
+            style="@style/LoginSignUp1Input"
+            android:hint="Enter Password"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/confirmPassword"
+            style="@style/LoginSignUp1Input"
+            android:hint="Confirm Password"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/address"
+            style="@style/LoginSignUp1Input"
+            android:hint="Enter Address"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:id="@+id/show_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="17dp" />
+
+
+        <LinearLayout
+            android:id="@+id/add_water"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"></LinearLayout>
+
+        <Button
+            android:id="@+id/submit"
+            style="@style/ButtonOrange"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:text="Next"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+

@@ -1,0 +1,206 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">17dp</dimen>
+    <dimen name="activity_vertical_margin">17dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <item name="menuFromDegrees" format="float" type="dimen">180.0</item>
+    <item name="menuToDegrees" format="float" type="dimen">360.0</item>
+
+    <dimen name="menuChildSize">80dp</dimen>
+    <dimen name="slidingmenu_offset">100dp</dimen>
+    <dimen name="list_padding">10dp</dimen>
+    <dimen name="shadow_width">1500dp</dimen>
+    <!-- Text Size Start -->
+
+
+    <!-- Text Size Small -->
+    <dimen name="textsizeS">16sp</dimen>
+    <dimen name="textsizeSmS">12sp</dimen>
+    <dimen name="textsize_splashS">12sp</dimen>
+    <dimen name="textsizeSmallS">10sp</dimen>
+    <dimen name="textsizeSmallTapS">10sp</dimen>
+    <dimen name="textsizeBigS">16sp</dimen>
+    <dimen name="textsizeVBigS">32sp</dimen>
+    <dimen name="textsizeBudgetBigS">18sp</dimen>
+    <dimen name="textsizeMaxS">26sp</dimen>
+    <dimen name="textsizeMax2S">22sp</dimen>
+    <dimen name="textsizeMax3S">32sp</dimen>
+    <dimen name="textsizeNormalS">14sp</dimen>
+    <dimen name="textsizeHeaderS">16sp</dimen>
+    <dimen name="textsizeHomeS">40sp</dimen>
+    <dimen name="textsizeDateS">12sp</dimen>
+    <dimen name="textsizevvSmallS">10sp</dimen>
+    <dimen name="textsizevSmallS">8sp</dimen>
+    <dimen name="textViewsize2S">28sp</dimen>
+    <dimen name="textViewsize3S">46sp</dimen>
+
+    <!-- Text Size Normal/Medium -->
+    <dimen name="textsizeM">18sp</dimen>
+    <dimen name="textsizeSmM">14sp</dimen>
+    <dimen name="textsize_splashM">14sp</dimen>
+    <dimen name="textsizeSmallM">12sp</dimen>
+    <dimen name="textsizeSmallTapM">12sp</dimen>
+    <dimen name="textsizeBigM">18sp</dimen>
+    <dimen name="textsizeVBigM">35sp</dimen>
+    <dimen name="textsizeBudgetBigM">20sp</dimen>
+    <dimen name="textsizeMaxM">28sp</dimen>
+    <dimen name="textsizeMax2M">25sp</dimen>
+    <dimen name="textsizeMax3M">35sp</dimen>
+    <dimen name="textsizeNormalM">16sp</dimen>
+    <dimen name="textsizeHeaderM">18sp</dimen>
+    <dimen name="textsizeHomeM">42sp</dimen>
+    <dimen name="textsizeDateM">15sp</dimen>
+    <dimen name="textsizevvSmallM">12sp</dimen>
+    <dimen name="textsizevSmallM">10sp</dimen>
+    <dimen name="textViewsize2M">30sp</dimen>
+    <dimen name="textViewsize3M">48sp</dimen>
+
+    <!-- Text Size Large -->
+    <dimen name="textsizeL">20sp</dimen>
+    <dimen name="textsizeSmL">16sp</dimen>
+    <dimen name="textsize_splashL">16sp</dimen>
+    <dimen name="textsizeSmallL">14sp</dimen>
+    <dimen name="textsizeSmallTapL">14sp</dimen>
+    <dimen name="textsizeBigL">20sp</dimen>
+    <dimen name="textsizeVBigL">38sp</dimen>
+    <dimen name="textsizeBudgetBigL">22sp</dimen>
+    <dimen name="textsizeMaxL">30sp</dimen>
+    <dimen name="textsizeMax2L">28sp</dimen>
+    <dimen name="textsizeMax3L">38sp</dimen>
+    <dimen name="textsizeNormalL">18sp</dimen>
+    <dimen name="textsizeHeaderL">20sp</dimen>
+    <dimen name="textsizeHomeL">44sp</dimen>
+    <dimen name="textsizeDateL">18sp</dimen>
+    <dimen name="textsizevvSmallL">14sp</dimen>
+    <dimen name="textsizevSmallL">12sp</dimen>
+    <dimen name="textViewsize2L">32sp</dimen>
+    <dimen name="textViewsize3L">50sp</dimen>
+
+    <!-- Default Text Sizes Original -->
+    <dimen name="textsizeSm">14sp</dimen>
+    <dimen name="textsize_splash">14sp</dimen>
+    <dimen name="textsizeSmall">12sp</dimen>
+    <dimen name="textsizeSmallTap">12sp</dimen>
+    <dimen name="textSize">12sp</dimen>
+    <dimen name="textsizeBig">18sp</dimen>
+    <dimen name="textsizeVBig">35sp</dimen>
+    <dimen name="textsizeBudgetBig">20sp</dimen>
+    <dimen name="textsizeMax">28sp</dimen>
+    <dimen name="textsizeMax2">25sp</dimen>
+    <dimen name="textsizeMax3">35sp</dimen>
+    <dimen name="textsizeNormal">16sp</dimen>
+    <dimen name="textsizeHeader">18sp</dimen>
+    <dimen name="textsizeHome">42sp</dimen>
+    <dimen name="textsizeDate">15sp</dimen>
+    <dimen name="textsizevvSmall">12sp</dimen>
+    <dimen name="textsizevSmall">10sp</dimen>
+    <dimen name="textViewsize2">30sp</dimen>
+    <dimen name="textViewsize3">48sp</dimen>
+
+    <!-- Text Size End -->
+
+    <dimen name="accountWidth">80dp</dimen>
+    <dimen name="leftPanelHeight">60dp</dimen>
+    <dimen name="leftPanelMenuHeight">45dp</dimen>
+    <dimen name="changeLogHeight">36dp</dimen>
+    <dimen name="notification_width_height">25dp</dimen>
+    <dimen name="headerHeight">50dp</dimen>
+    <dimen name="header_arrow_width">10dp</dimen>
+    <dimen name="header_arrow_height">15dp</dimen>
+    <dimen name="header_leftarrow_margin">16dp</dimen>
+    <dimen name="header_text_margin">26dp</dimen>
+    <dimen name="setting_normal_size_width_height">40dp</dimen>
+    <dimen name="change_currency_icon_width">37dp</dimen>
+    <dimen name="history_option_height">60dp</dimen>
+    <dimen name="history_option_width_height">35dp</dimen>
+    <dimen name="login_progress_width_height">20dp</dimen>
+    <dimen name="progress_layout_width">300dp</dimen>
+    <dimen name="leftMarginDate" format="int">10dp</dimen>
+    <dimen name="splash_image_width_height">240dp</dimen>
+    <dimen name="dem_directory_product_height">60dp</dimen>
+    <dimen name="expandable_categ_list_width">250dp</dimen>
+    <dimen name="export_popup_width">280dp</dimen>
+    <dimen name="popup_listview_height">200dp</dimen>
+    <dimen name="history_timer_width_height">70dp</dimen>
+    <dimen name="spinner_width">150dp</dimen>
+    <dimen name="circular_image_width_height">65dp</dimen>
+    <dimen name="circular_white_area_width">80dp</dimen>
+    <dimen name="lock_width_height">25dp</dimen>
+    <dimen name="message_icon_height">20dp</dimen>
+    <dimen name="icon_space_width">50dp</dimen>
+    <dimen name="tutorial_space_width">50dp</dimen>
+    <dimen name="textsizeCalculator">35sp</dimen>
+    <dimen name="calculator_icons_width_height">30dp</dimen>
+    <dimen name="actionBar_Height">50dp</dimen>
+    <dimen name="dropdownarrow_selector_size">50dp</dimen>
+    <dimen name="phone_with_bg_height">210dp</dimen>
+    <dimen name="spinnerLayout_height_historyScreen">40dp</dimen>
+    <dimen name="spinner_width_historyScreen">135dp</dimen>
+    <dimen name="graph_height_historyScreen">200dp</dimen>
+    <dimen name="useraccount_layout_height_historyScreen">56dp</dimen>
+    <dimen name="useraccount_spinner_height_historyScreen">50dp</dimen>
+    <dimen name="piehcart_height_historyScreen">260dp</dimen>
+    <dimen name="userImg_height_historyScreen">50dp</dimen>
+    <dimen name="tapherelayout_height_homescreen">40dp</dimen>
+    <dimen name="fab_margin_homescreen">10dp</dimen>
+    <dimen name="bank_childView_dialog">12sp</dimen>
+    <dimen name="marginBankDialog">1dp</dimen>
+    <dimen name="dialog_header_text">12sp</dimen>
+
+    <integer name="num_cols">1</integer>
+
+    <dimen name="widgetWidth">300dp</dimen>
+    <dimen name="widgetHeight">180dp</dimen>
+    <dimen name="margin_bankIcon">8dp</dimen>
+    <dimen name="linkedBankSize">10sp</dimen>
+    <dimen name="spinner_width_add_other_account">140dp</dimen>
+    <!-- ICON PACK -->
+    <dimen name="icon_pack_thumnails_height">115dp</dimen>
+    <dimen name="icon_btwn_two">2dp</dimen>
+    <dimen name="icon_dialog_sidemargin">10dp</dimen>
+    <dimen name="icon_marginTopBottom">5dp</dimen>
+    <!-- Caldroid dimen -->
+    <dimen name="lib_category_padding_sides">1.5dp</dimen>
+    <dimen name="event_categories_textsize">7sp</dimen>
+    <dimen name="calender_date_views_sideline_margin">1dp</dimen>
+    <dimen name="lib_calendar_day_padding_sides">2dp</dimen>
+    <dimen name="event_categories_top_margin">15dp</dimen>
+    <dimen name="lib_calendar_day_textsize">9sp</dimen>
+    <dimen name="event_right_margin">1dp</dimen>
+    <dimen name="margin_top_left_right">2dp</dimen>
+    <dimen name="reminder_datecell_height">48dp</dimen>
+    <dimen name="circle_dimen">13dp</dimen>
+    <dimen name="week_days_size">13sp</dimen>
+    <dimen name="outer_padding">5dp</dimen>
+    <dimen name="big_padding">30dp</dimen>
+    <dimen name="head_padding">10dp</dimen>
+    <dimen name="head_outer_padding">10dp</dimen>
+    <dimen name="element_padding">5dp</dimen>
+    <dimen name="element_padding_half">2.5dp</dimen>
+    <dimen name="button_width">120dp</dimen>
+
+    <!-- MATERIAL DIALOG DIMEN -->
+
+    <dimen name="material_dialog_button_hieght">34dp</dimen>
+    <dimen name="material_dialog_width">280dp</dimen>
+    <dimen name="pager_sliding_tab_height">48dp</dimen>
+    <!-- SPLASH SCREEN -->
+    <dimen name="margin_one_dp">1dp</dimen>
+    <dimen name="margin_ten_dp">10dp</dimen>
+    <dimen name="image_split_view">40dp</dimen>
+
+    <dimen name="header_logo_size">100dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="map_height">440dp</dimen>
+
+    <dimen name="register_padding">10dp</dimen>
+    <dimen name="register_padding_top">5dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="frame_list_view_height">345dp</dimen>
+
+</resources>
