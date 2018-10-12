@@ -98,7 +98,7 @@
     </style>
 
     <style name="ButtonOrange" parent="@android:style/Widget.Button">
-        <item name="android:background">@color/button_orange</item>
+        <item name="android:background">@color/colorPrimary</item>
     </style>
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

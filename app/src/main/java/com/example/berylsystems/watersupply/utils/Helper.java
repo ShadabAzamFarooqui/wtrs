@@ -37,7 +37,7 @@ public class Helper {
                 ActionBar.LayoutParams.WRAP_CONTENT,
                 ActionBar.LayoutParams.MATCH_PARENT,
                 Gravity.CENTER);
-        actionBar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(context, R.color.button_orange)));
+        actionBar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(context, R.color.colorPrimary)));
         //actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setCustomView(viewActionBar, params);
@@ -80,7 +80,7 @@ public class Helper {
     public static void setStatusBar(Activity context) {
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                context.getWindow().setStatusBarColor(ContextCompat.getColor(context, R.color.button_orange));
+                context.getWindow().setStatusBarColor(ContextCompat.getColor(context, R.color.colorPrimary));
             }
         } catch (Error e) {
         }

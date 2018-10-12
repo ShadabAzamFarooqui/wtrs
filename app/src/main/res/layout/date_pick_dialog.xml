@@ -37,7 +37,7 @@
                         android:gravity="center"
                         android:text="ENTER DATE"
                         android:textStyle="bold"
-                        android:textColor="@color/button_orange"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="18sp" />
 
                     <LinearLayout
@@ -151,7 +151,7 @@
                style="@style/Gotham_Bold"
                android:layout_width="match_parent"
                android:layout_height="45dp"
-               android:background="@color/button_orange"
+               android:background="@color/colorPrimary"
                android:text="Submit"
                android:textSize="18sp"
                android:textColor="@color/white"
