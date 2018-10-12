@@ -22,7 +22,6 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,9 +39,6 @@ import com.example.berylsystems.watersupply.utils.ParameterConstants;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
-import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -96,7 +92,7 @@ public class OrderActivity extends AppCompatActivity {
     AppUser appUser;
     int endTime = 15;
     public static OrderActivity context;
-    boolean isKeyPadOpen;
+    public static boolean isKeyPadOpen;
 
     DatePickerDialog datePickerDialog;
     String dateString;
@@ -444,16 +440,10 @@ public class OrderActivity extends AppCompatActivity {
     void showPopup(TextView emptyBottle, TextView total) {
         dialog = new Dialog(OrderActivity.this);
         dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.empty_bottle_rate_dialog);
+        dialog.setContentView(R.layout.cancel_order_dailog);
         dialog.setCancelable(false);
-        EditText quantity = (EditText) dialog.findViewById(R.id.quantity);
-        TextView rate = (TextView) dialog.findViewById(R.id.rate);
-//        appUser.supplier.setEmptyBottleRate("150");
+        EditText quantity = (EditText) dialog.findViewById(R.id.message);
         LocalRepositories.saveAppUser(getApplicationContext(), appUser);
-        appUser = LocalRepositories.getAppUser(getApplicationContext());
-//        rate.setText(appUser.supplier.getEmptyBottleRate());
-        quantity.setText("1");
-
         Button submit = (Button) dialog.findViewById(R.id.dialogSubmit);
         LinearLayout close = (LinearLayout) dialog.findViewById(R.id.close);
 
@@ -465,14 +455,7 @@ public class OrderActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (!quantity.getText().toString().isEmpty()) {
-                    if (Integer.valueOf(quantity.getText().toString()) == 0) {
-                        quantity.setText("1");
-                    }
-//                    rate.setText("" + (Integer.valueOf(appUser.supplier.getEmptyBottleRate()) * Integer.valueOf(quantity.getText().toString())));
-                } else {
-//                    rate.setText(appUser.supplier.getEmptyBottleRate());
-                }
+
             }
 
             @Override
@@ -483,20 +466,13 @@ public class OrderActivity extends AppCompatActivity {
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCheckBoxEmptyBottle.setChecked(false);
-                dialog.dismiss();
+
             }
         });
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (quantity.getText().toString().isEmpty()) {
-                    Toast.makeText(OrderActivity.this, "Enter Quantity", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-//                dialog.dismiss();
-//                emptyBottle.setText(quantity.getText().toString()+"×"+appUser.supplier.getEmptyBottleRate()+"="+rate.getText().toString());
-//                total.setText("" + (Double.valueOf(total.getText().toString()) + Double.valueOf(rate.getText().toString())));
+
             }
         });
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {

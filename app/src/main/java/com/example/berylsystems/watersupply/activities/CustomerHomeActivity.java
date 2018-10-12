@@ -39,6 +39,10 @@ import com.example.berylsystems.watersupply.R;
 import com.example.berylsystems.watersupply.bean.UserBean;
 import com.example.berylsystems.watersupply.fragment.customer.OrderListFragment;
 import com.example.berylsystems.watersupply.fragment.customer.SupplierListFragment;
+import com.example.berylsystems.watersupply.fragment.supplier.CancelOrderFragment;
+import com.example.berylsystems.watersupply.fragment.supplier.DeliveredOrderFragment;
+import com.example.berylsystems.watersupply.fragment.supplier.DispatchOrderFragment;
+import com.example.berylsystems.watersupply.fragment.supplier.PendingOrderFragment;
 import com.example.berylsystems.watersupply.utils.AppUser;
 import com.example.berylsystems.watersupply.utils.Helper;
 import com.example.berylsystems.watersupply.utils.LocalRepositories;
@@ -279,6 +283,27 @@ public class CustomerHomeActivity extends AppCompatActivity implements Navigatio
             startActivity(new Intent(getApplicationContext(), SignInActivity.class));
 //            overridePendingTransition(R.anim.slide_to_right, R.anim.slide_from_left);
             finish();
+        }if (id == R.id.clear_order) {
+            DatabaseReference database = FirebaseDatabase.getInstance().getReference("Order");
+            database.setValue(null, new DatabaseReference.CompletionListener() {
+                @Override
+                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                    if (databaseError == null) {
+//                        PendingOrderFragment.orderBeanList.clear();
+//                        PendingOrderFragment.mAdapter.notifyDataSetChanged();
+//
+//                        DispatchOrderFragment.orderBeanList.clear();
+//                        DispatchOrderFragment.mAdapter.notifyDataSetChanged();
+//
+//                        DeliveredOrderFragment.orderBeanList.clear();
+//                        DeliveredOrderFragment.mAdapter.notifyDataSetChanged();
+//
+//                        CancelOrderFragment.orderBeanList.clear();
+//                        CancelOrderFragment.mAdapter.notifyDataSetChanged();
+                        Toast.makeText(getApplicationContext(), "Order Cleared", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
 
         return super.onOptionsItemSelected(item);

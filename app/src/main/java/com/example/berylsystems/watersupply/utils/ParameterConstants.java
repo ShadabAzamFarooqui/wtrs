@@ -17,5 +17,6 @@ public class ParameterConstants {
     public static String PENDING ="Pending";
     public static String DELIVER ="Delivered";
     public static String DISPATCH ="Dispatched";
+    public static String CANCEL ="Canceled";
     public static boolean isUpdate=false;
 }

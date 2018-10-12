@@ -1,25 +1,21 @@
-package com.example.berylsystems.watersupply.adapter.customer;
+package com.example.berylsystems.watersupply.adapter.supplier;
 
-import android.animation.ObjectAnimator;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.berylsystems.watersupply.R;
-import com.example.berylsystems.watersupply.activities.OrderActivity;
-import com.example.berylsystems.watersupply.adapter.HistoryListAdapter;
 import com.example.berylsystems.watersupply.bean.Combine;
 import com.example.berylsystems.watersupply.bean.OrderBean;
+import com.example.berylsystems.watersupply.fragment.supplier.CancelOrderFragment;
 import com.example.berylsystems.watersupply.fragment.supplier.DeliveredOrderFragment;
 import com.example.berylsystems.watersupply.fragment.supplier.PendingOrderFragment;
 import com.example.berylsystems.watersupply.utils.Helper;
@@ -33,29 +29,30 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.ViewHolder> {
+public class CanceledOrderListAdapter extends RecyclerView.Adapter<CanceledOrderListAdapter.ViewHolder> {
 
     private List<OrderBean> data;
     private Activity context;
     View mConvertView;
-    Boolean aBoolean;
     ProgressDialog mProgressDialog;
+    SwipeRefreshLayout swipeRefreshLayout;
 
-    public OrderListAdapter(Activity context, List<OrderBean> data, Boolean b) {
+    public CanceledOrderListAdapter(Activity context, List<OrderBean> data, SwipeRefreshLayout swipeRefreshLayout) {
         this.data = data;
         this.context = context;
-        aBoolean = b;
+        this.swipeRefreshLayout = swipeRefreshLayout;
+
     }
 
 
     @Override
-    public OrderListAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_order_list, viewGroup, false);
+    public CanceledOrderListAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_canceled_list, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(OrderListAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(CanceledOrderListAdapter.ViewHolder viewHolder, int position) {
 
         viewHolder.shopName.setText(data.get(position).getSupplier().getShopName());
         viewHolder.bookingTime.setText(data.get(position).getBookingDate());
@@ -63,27 +60,17 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         viewHolder.day.setText(dateAr[0]);
         viewHolder.month.setText(dateAr[1]);
         viewHolder.year.setText(dateAr[2]);
-        viewHolder.supplierName.setText(data.get(position).getUser().getName());
-        viewHolder.supplierMobile.setText(data.get(position).getSupplier().getMobile());
-        viewHolder.userMobile.setText(data.get(position).getUser().getMobile());
+        viewHolder.supplierName.setText(data.get(position).getSupplier().getName());
+        viewHolder.supplierMobile.setText(data.get(position).getUser().getMobile());
         viewHolder.address.setText(data.get(position).getAddress());
-        viewHolder.status.setText(data.get(position).getStatus());
-        viewHolder.amount.setText("\u20B9" + data.get(position).getAmount());
+        viewHolder.total.setText(data.get(position).getAmount());
         viewHolder.orderId.setText(data.get(position).getOrderId().toUpperCase());
+        viewHolder.reason.setText(data.get(position).getReason());
         if (data.get(position).getComment().trim().isEmpty()) {
             viewHolder.comment.setVisibility(View.GONE);
         } else {
             viewHolder.comment.setVisibility(View.VISIBLE);
             viewHolder.comment.setText(data.get(position).getComment());
-        }
-        viewHolder.bind(data.get(position).getStatus());
-        if (data.get(position).getStatus().equals(ParameterConstants.CANCEL)) {
-            viewHolder.cancel.setVisibility(View.VISIBLE);
-            viewHolder.reason.setVisibility(View.VISIBLE);
-            viewHolder.reason.setText(data.get(position).getReason());
-        } else {
-            viewHolder.cancel.setVisibility(View.GONE);
-            viewHolder.reason.setVisibility(View.GONE);
         }
         removeAllViews(viewHolder);
         try {
@@ -111,14 +98,10 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
             }
         } catch (Exception e) {
         }
-        viewHolder.delete.setOnClickListener(new View.OnClickListener() {
+        viewHolder.deliver_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (data.get(position).getStatus().equals(ParameterConstants.PENDING) || data.get(position).getStatus().equals(ParameterConstants.CANCEL)) {
-                    dialog(position, "Delete Confirmation", "Do you want to delete this order ?");
-                } else {
-                    Toast.makeText(context, "Order Can't delete", Toast.LENGTH_SHORT).show();
-                }
+                dialog(position, "Cancel Confirmation", "Do you want to cancel ?", ParameterConstants.PENDING);
             }
         });
     }
@@ -136,11 +119,12 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         TextView bottleQty = ((TextView) mConvertView.findViewById(R.id.bottleQty));
         TextView orderRate = ((TextView) mConvertView.findViewById(R.id.orderRate));
         orderName.setText(name/*+" (\u20B9"+rate+")"*/);
-        waterQty.setText("" + wQty);
-        bottleQty.setText("" + bQty);
-        orderRate.setText("" + rate);
+        waterQty.setText(String.valueOf(wQty));
+        bottleQty.setText(String.valueOf(bQty));
+        orderRate.setText(String.valueOf(rate));
         ((ViewGroup) viewHolder.parentLayout).addView(mConvertView);
     }
+
 
     void removeAllViews(ViewHolder viewHolder) {
         mConvertView = context.getLayoutInflater().inflate(R.layout.dynamic_show_order, null);
@@ -162,47 +146,30 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         TextView supplierName;
         @Bind(R.id.supplierMobile)
         TextView supplierMobile;
-        @Bind(R.id.userMobile)
-        TextView userMobile;
         @Bind(R.id.address)
         TextView address;
-        @Bind(R.id.status)
-        TextView status;
+        @Bind(R.id.total)
+        TextView total;
         @Bind(R.id.comment)
         TextView comment;
         @Bind(R.id.orderId)
         TextView orderId;
         @Bind(R.id.parentLayout)
         LinearLayout parentLayout;
-        @Bind(R.id.amount)
-        TextView amount;
-        @Bind(R.id.delete)
-        ImageView delete;
+        @Bind(R.id.deliver_layout)
+        LinearLayout deliver_layout;
         @Bind(R.id.reason)
         TextView reason;
-        @Bind(R.id.cancel)
-        TextView cancel;
 
-
-        private ObjectAnimator anim;
-
-        @SuppressLint("WrongConstant")
         public ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, itemView);
-            anim = ObjectAnimator.ofFloat(status, "alpha", 0.2f, 1f);
-            anim.setRepeatMode(Animation.REVERSE);
-            anim.setRepeatCount(Animation.INFINITE);
-            anim.setDuration(800);
-        }
 
-        public void bind(String dataObject) {
-            anim.start();
         }
     }
 
 
-    void dialog(int position, String tittle, String message) {
+    void dialog(int position, String tittle, String message, String status) {
         new AlertDialog.Builder(context)
                 .setTitle(tittle)
                 .setMessage(message)
@@ -212,16 +179,24 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                         return;
                     }
                     mProgressDialog = new ProgressDialog(context);
-                    mProgressDialog.setMessage("Deleting...");
+                    mProgressDialog.setMessage("Please wait...");
                     mProgressDialog.setCancelable(false);
+//                    swipeRefreshLayout.setRefreshing(true);
                     mProgressDialog.show();
                     DatabaseReference database = FirebaseDatabase.getInstance().getReference("Order");
-                    database.child(data.get(position).getOrderId()).setValue(null, new DatabaseReference.CompletionListener() {
+                    OrderBean orderBean = data.get(position);
+                    orderBean.setStatus(status);
+                    database.child(data.get(position).getOrderId()).setValue(orderBean, new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                             mProgressDialog.dismiss();
                             if (databaseError == null) {
-                                Toast.makeText(context, "This order has been deleted", Toast.LENGTH_SHORT).show();
+//                                new NetworkAsyncTask(orderBean.getUser().getRefreshToken(),"canceled","Share Location").execute();
+//                                swipeRefreshLayout.setRefreshing(false);
+                                CancelOrderFragment.orderBeanList.remove(orderBean);
+                                CancelOrderFragment.mAdapter.notifyDataSetChanged();
+                                PendingOrderFragment.orderBeanList.add(orderBean);
+                                PendingOrderFragment.mAdapter.notifyDataSetChanged();
                             }
                         }
                     });
@@ -230,5 +205,4 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                 .setNegativeButton("Cancel", null)
                 .show();
     }
-
 }

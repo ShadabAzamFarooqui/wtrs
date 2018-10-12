@@ -8,5 +8,12 @@
         android:visible="true"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/clear_order"
+        android:orderInCategory="100"
+        android:title="Clear Orders"
+        android:visible="true"
+        app:showAsAction="never" />
+
 
 </menu>

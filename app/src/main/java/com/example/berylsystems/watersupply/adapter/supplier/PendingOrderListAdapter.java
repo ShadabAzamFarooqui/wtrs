@@ -1,20 +1,29 @@
 package com.example.berylsystems.watersupply.adapter.supplier;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.berylsystems.watersupply.R;
+import com.example.berylsystems.watersupply.activities.SupplierHomeActivity;
 import com.example.berylsystems.watersupply.bean.Combine;
 import com.example.berylsystems.watersupply.bean.OrderBean;
+import com.example.berylsystems.watersupply.fragment.supplier.CancelOrderFragment;
 import com.example.berylsystems.watersupply.fragment.supplier.DeliveredOrderFragment;
 import com.example.berylsystems.watersupply.fragment.supplier.DispatchOrderFragment;
 import com.example.berylsystems.watersupply.fragment.supplier.PendingOrderFragment;
@@ -36,6 +45,7 @@ public class PendingOrderListAdapter extends RecyclerView.Adapter<PendingOrderLi
     View mConvertView;
     SwipeRefreshLayout swipeRefreshLayout;
     ProgressDialog mProgressDialog;
+
     public PendingOrderListAdapter(Activity context, List<OrderBean> data, SwipeRefreshLayout swipeRefreshLayout) {
         this.data = data;
         this.context = context;
@@ -107,6 +117,12 @@ public class PendingOrderListAdapter extends RecyclerView.Adapter<PendingOrderLi
                 dialog(position, "Dispatch Confirmation", "Are you sure this order has been dispatch ?", ParameterConstants.DISPATCH, ParameterConstants.DISPATCH);
             }
         });
+        viewHolder.cancel_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopup(position);
+            }
+        });
     }
 
 
@@ -162,6 +178,8 @@ public class PendingOrderListAdapter extends RecyclerView.Adapter<PendingOrderLi
         LinearLayout deliver_layout;
         @Bind(R.id.dispatch_layout)
         LinearLayout dispatch_layout;
+        @Bind(R.id.cancel_layout)
+        LinearLayout cancel_layout;
 
         public ViewHolder(View view) {
             super(view);
@@ -191,6 +209,9 @@ public class PendingOrderListAdapter extends RecyclerView.Adapter<PendingOrderLi
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                             mProgressDialog.dismiss();
                             if (databaseError == null) {
+                                if (dialog != null) {
+                                    dialog.dismiss();
+                                }
 //                              new NetworkAsyncTask(orderBean.getUser().getRefreshToken(),"delivered","Share Location").execute();
                                 swipeRefreshLayout.setRefreshing(false);
                                 if (from.equals(ParameterConstants.DELIVER)) {
@@ -198,11 +219,16 @@ public class PendingOrderListAdapter extends RecyclerView.Adapter<PendingOrderLi
                                     DeliveredOrderFragment.orderBeanList.add(orderBean);
                                     PendingOrderFragment.mAdapter.notifyDataSetChanged();
                                     DeliveredOrderFragment.mAdapter.notifyDataSetChanged();
-                                } else {
+                                } else if (from.equals(ParameterConstants.DISPATCH)) {
                                     PendingOrderFragment.orderBeanList.remove(orderBean);
                                     DispatchOrderFragment.orderBeanList.add(orderBean);
                                     PendingOrderFragment.mAdapter.notifyDataSetChanged();
                                     DispatchOrderFragment.mAdapter.notifyDataSetChanged();
+                                } else if (from.equals(ParameterConstants.CANCEL)) {
+                                    PendingOrderFragment.orderBeanList.remove(orderBean);
+                                    CancelOrderFragment.orderBeanList.add(orderBean);
+                                    PendingOrderFragment.mAdapter.notifyDataSetChanged();
+                                    CancelOrderFragment.mAdapter.notifyDataSetChanged();
                                 }
                             }
                         }
@@ -210,5 +236,117 @@ public class PendingOrderListAdapter extends RecyclerView.Adapter<PendingOrderLi
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
+    }
+
+    void dialogCancel(int position, String tittle, String message, String status, String from, String reason) {
+        dialog.dismiss();
+        new AlertDialog.Builder(context)
+                .setTitle(tittle)
+                .setMessage(message)
+                .setPositiveButton("Yes", (dialogInterface, i) -> {
+                    if (!Helper.isNetworkAvailable(context)) {
+                        Toast.makeText(context, "Please Check your internet connection", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    mProgressDialog = new ProgressDialog(context);
+                    mProgressDialog.setMessage("Please wait...");
+                    mProgressDialog.setCancelable(false);
+                    mProgressDialog.show();
+                    DatabaseReference database = FirebaseDatabase.getInstance().getReference("Order");
+                    OrderBean orderBean = data.get(position);
+                    orderBean.setStatus(status);
+                    orderBean.setReason(reason);
+                    database.child(data.get(position).getOrderId()).setValue(orderBean, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                            mProgressDialog.dismiss();
+                            if (databaseError == null) {
+                                if (dialog != null) {
+                                    dialog.dismiss();
+                                }
+//                              new NetworkAsyncTask(orderBean.getUser().getRefreshToken(),"delivered","Share Location").execute();
+                                swipeRefreshLayout.setRefreshing(false);
+                                if (from.equals(ParameterConstants.DELIVER)) {
+                                    PendingOrderFragment.orderBeanList.remove(orderBean);
+                                    DeliveredOrderFragment.orderBeanList.add(orderBean);
+                                    PendingOrderFragment.mAdapter.notifyDataSetChanged();
+                                    DeliveredOrderFragment.mAdapter.notifyDataSetChanged();
+                                } else if (from.equals(ParameterConstants.DISPATCH)) {
+                                    PendingOrderFragment.orderBeanList.remove(orderBean);
+                                    DispatchOrderFragment.orderBeanList.add(orderBean);
+                                    PendingOrderFragment.mAdapter.notifyDataSetChanged();
+                                    DispatchOrderFragment.mAdapter.notifyDataSetChanged();
+                                } else if (from.equals(ParameterConstants.CANCEL)) {
+                                    PendingOrderFragment.orderBeanList.remove(orderBean);
+                                    CancelOrderFragment.orderBeanList.add(orderBean);
+                                    PendingOrderFragment.mAdapter.notifyDataSetChanged();
+                                    CancelOrderFragment.mAdapter.notifyDataSetChanged();
+                                }
+                            }
+                        }
+                    });
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    Dialog dialog;
+
+    void showPopup(int position) {
+        dialog = new Dialog(context);
+        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.cancel_order_dailog);
+        dialog.setCancelable(false);
+        EditText message = (EditText) dialog.findViewById(R.id.message);
+        LinearLayout message_layout = (LinearLayout) dialog.findViewById(R.id.message_layout);
+        Spinner reason = (Spinner) dialog.findViewById(R.id.spinner);
+        Button submit = (Button) dialog.findViewById(R.id.dialogSubmit);
+        LinearLayout close = (LinearLayout) dialog.findViewById(R.id.close);
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        reason.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                message.setText(reason.getSelectedItem().toString());
+                if (i!=3){
+                    message_layout.setVisibility(View.GONE);
+                }else {
+                    message_layout.setVisibility(View.VISIBLE);
+                    message.setText("");
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (message.getText().toString().isEmpty()){
+                    message.setError("Please Enter the reason");
+                    return;
+                }
+                if (message.getText().toString().equals("Select Reason")){
+                    Toast.makeText(context, "Please select reason", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                dialogCancel(position, "Cancel Confirmation", "Are you sure to cancel ?", ParameterConstants.CANCEL, ParameterConstants.CANCEL, message.getText().toString());
+            }
+        });
+        dialog.show();
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Helper.closeKeyPad(context, SupplierHomeActivity.isKeyPadOpen);
+            }
+        });
     }
 }

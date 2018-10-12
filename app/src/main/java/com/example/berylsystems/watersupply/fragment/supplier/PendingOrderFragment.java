@@ -25,6 +25,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -52,6 +55,7 @@ public class PendingOrderFragment extends Fragment implements SwipeRefreshLayout
     String mobileNumber;
     String format = "dd MMM yyyy";
     String today;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -113,6 +117,8 @@ public class PendingOrderFragment extends Fragment implements SwipeRefreshLayout
                         }
                     }
 
+                }else {
+                    setAdapter();
                 }
             }
 

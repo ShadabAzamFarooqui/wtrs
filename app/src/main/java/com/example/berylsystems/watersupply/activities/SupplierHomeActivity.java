@@ -38,6 +38,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.berylsystems.watersupply.R;
+import com.example.berylsystems.watersupply.adapter.supplier.PendingOrderListAdapter;
+import com.example.berylsystems.watersupply.fragment.supplier.CancelOrderFragment;
 import com.example.berylsystems.watersupply.fragment.supplier.DeliveredOrderFragment;
 import com.example.berylsystems.watersupply.fragment.supplier.DispatchOrderFragment;
 import com.example.berylsystems.watersupply.fragment.supplier.PendingOrderFragment;
@@ -52,6 +54,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
+
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +80,7 @@ public class SupplierHomeActivity extends AppCompatActivity implements Navigatio
     boolean isExit;
     AppUser appUser;
     DrawerLayout drawer;
-
+    public static boolean isKeyPadOpen;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +91,13 @@ public class SupplierHomeActivity extends AppCompatActivity implements Navigatio
         mTabLayout.setupWithViewPager(mHeaderViewPager);
         mHeaderViewPager.setOffscreenPageLimit(3);
         navigation();
+
+        KeyboardVisibilityEvent.setEventListener(this, new KeyboardVisibilityEventListener() {
+            @Override
+            public void onVisibilityChanged(boolean isOpen) {
+                isKeyPadOpen = isOpen;
+            }
+        });
     }
 
     void navigation() {
@@ -153,6 +165,7 @@ public class SupplierHomeActivity extends AppCompatActivity implements Navigatio
         adapter.addFragment(new PendingOrderFragment(), "Pending");
         adapter.addFragment(new DispatchOrderFragment(), "Dispatch");
         adapter.addFragment(new DeliveredOrderFragment(), "Delivered");
+        adapter.addFragment(new CancelOrderFragment(), "Canceled");
         viewPager.setAdapter(adapter);
     }
 
@@ -278,6 +291,29 @@ public class SupplierHomeActivity extends AppCompatActivity implements Navigatio
             startActivity(new Intent(getApplicationContext(), SignInActivity.class));
             overridePendingTransition(R.anim.slide_to_right, R.anim.slide_from_left);
             finish();
+        }
+        if (id == R.id.clear_order) {
+            DatabaseReference database = FirebaseDatabase.getInstance().getReference("Order");
+            database.setValue(null, new DatabaseReference.CompletionListener() {
+                @Override
+                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                    if (databaseError == null) {
+
+                        PendingOrderFragment.orderBeanList.clear();
+                        PendingOrderFragment.mAdapter.notifyDataSetChanged();
+
+                        DispatchOrderFragment.orderBeanList.clear();
+                        DispatchOrderFragment.mAdapter.notifyDataSetChanged();
+
+                        DeliveredOrderFragment.orderBeanList.clear();
+                        DeliveredOrderFragment.mAdapter.notifyDataSetChanged();
+
+                        CancelOrderFragment.orderBeanList.clear();
+                        CancelOrderFragment.mAdapter.notifyDataSetChanged();
+                        Toast.makeText(getApplicationContext(), "Order Cleared", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
 
         return super.onOptionsItemSelected(item);

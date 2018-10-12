@@ -12,6 +12,7 @@ public class OrderBean {
     String address;
     String orderId;
     String status;
+    String reason;
 
     UserBean user;
     UserBean supplier;
@@ -103,5 +104,14 @@ public class OrderBean {
 
     public void setSupplier(UserBean supplier) {
         this.supplier = supplier;
+    }
+
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 }

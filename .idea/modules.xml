@@ -5,9 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://C:\Users\Beryl\Desktop\waterSupply\app\app.iml" filepath="C:\Users\Beryl\Desktop\waterSupply\app\app.iml" />
       <module fileurl="file://D:\PC DATA\PC_Patidar\waterSupply\app\app.iml" filepath="D:\PC DATA\PC_Patidar\waterSupply\app\app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/waterSupply.iml" filepath="$PROJECT_DIR$/waterSupply.iml" />
       <module fileurl="file://D:\PC DATA\PC_Patidar\waterSupply\waterSupply.iml" filepath="D:\PC DATA\PC_Patidar\waterSupply\waterSupply.iml" />
       <module fileurl="file://C:\Users\Beryl\Desktop\waterSupply\water_supply.iml" filepath="C:\Users\Beryl\Desktop\waterSupply\water_supply.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wtrs.iml" filepath="$PROJECT_DIR$/wtrs.iml" />
     </modules>
   </component>
 </project>

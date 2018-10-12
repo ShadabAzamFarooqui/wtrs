@@ -12,7 +12,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.berylsystems.watersupply.R;
-import com.example.berylsystems.watersupply.adapter.supplier.DispatchOrderListAdapter;
+import com.example.berylsystems.watersupply.adapter.supplier.CanceledOrderListAdapter;
+import com.example.berylsystems.watersupply.adapter.supplier.DeliveredOrderListAdapter;
 import com.example.berylsystems.watersupply.bean.OrderBean;
 import com.example.berylsystems.watersupply.utils.AppUser;
 import com.example.berylsystems.watersupply.utils.Helper;
@@ -33,7 +34,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class DispatchOrderFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class CancelOrderFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     @Bind(R.id.mainLayout)
     LinearLayout mainLayout;
     @Bind(R.id.recycler_view)
@@ -44,7 +45,7 @@ public class DispatchOrderFragment extends Fragment implements SwipeRefreshLayou
     FirebaseDatabase database;
     DatabaseReference databaseReference;
     LinearLayoutManager linearLayoutManager;
-    public static DispatchOrderListAdapter mAdapter;
+    public static CanceledOrderListAdapter mAdapter;
     public static List<OrderBean> orderBeanList;
     ValueEventListener firstValueListener;
     AppUser appUser;
@@ -54,7 +55,7 @@ public class DispatchOrderFragment extends Fragment implements SwipeRefreshLayou
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.supplier_dispatch_fragment, container, false);
+        View view = inflater.inflate(R.layout.supplier_canceled_fragment, container, false);
         ButterKnife.bind(this, view);
         ButterKnife.bind(getActivity());
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -77,7 +78,7 @@ public class DispatchOrderFragment extends Fragment implements SwipeRefreshLayou
         linearLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(linearLayoutManager);
         Collections.reverse(orderBeanList);
-        mAdapter = new DispatchOrderListAdapter(getActivity(), orderBeanList, swipeRefreshLayout);
+        mAdapter = new CanceledOrderListAdapter(getActivity(), orderBeanList, swipeRefreshLayout);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -100,7 +101,7 @@ public class DispatchOrderFragment extends Fragment implements SwipeRefreshLayou
                         DataSnapshot snapshot = iterator.next();
                         final OrderBean orderBean = (OrderBean) snapshot.getValue(OrderBean.class);
                         if (orderBean.getSupplier().getMobile().equals(mobileNumber)) {
-                            if (orderBean.getStatus().equals(ParameterConstants.DISPATCH)) {
+                            if (orderBean.getStatus().equals(ParameterConstants.CANCEL)) {
                                 if (orderBean.getDeliveryDate().trim().equals(today)) {
                                     orderBeanList.add(orderBean);
                                 }

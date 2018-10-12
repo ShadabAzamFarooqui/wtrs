@@ -111,6 +111,8 @@ public class DeliveredOrderFragment extends Fragment implements SwipeRefreshLayo
                         }
                     }
 
+                }else {
+                    setAdapter();
                 }
             }
 

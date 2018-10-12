@@ -84,29 +84,29 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                   <LinearLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="right"
-                       android:gravity="right">
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="\u20B9"
-                           android:textColor="@color/colorPrimary"
-                           android:textStyle="italic"
-                           android:textAlignment="textEnd"
-                           android:textSize="12dp" />
-                       <TextView
-                           android:id="@+id/total"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="Rate"
-                           android:textColor="@color/black"
-                           android:textStyle="italic"
-                           android:textAlignment="textEnd"
-                           android:textSize="12dp" />
-                   </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:gravity="right">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="\u20B9"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="italic"
+                            android:textAlignment="textEnd"
+                            android:textSize="12dp" />
+                        <TextView
+                            android:id="@+id/total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rate"
+                            android:textColor="@color/black"
+                            android:textStyle="italic"
+                            android:textAlignment="textEnd"
+                            android:textSize="12dp" />
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/shopName"
@@ -267,10 +267,26 @@
         android:textColor="#949494"
         android:textStyle="italic" />
 
+
+    <com.example.berylsystems.watersupply.utils.BuzzTextView
+        android:id="@+id/reason"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:text="Yoga"
+        android:textAlignment="textStart"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="italic" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:background="@color/white"
         android:layout_marginLeft="5dp"
+        android:visibility="visible"
         android:layout_marginRight="5dp"
         android:layout_height="50dp">
         <LinearLayout
@@ -285,102 +301,28 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight=".75"
+                android:id="@+id/tickLayoutAccepted"
+                android:layout_weight="1"
                 android:gravity="end">
 
                 <ImageView
+                    android:id="@+id/tick"
                     android:layout_width="10dp"
                     android:layout_height="10dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="5dp"
-                    android:background="@drawable/tick_mark" />
+                    android:background="@drawable/icon_cancel_white" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_weight="1.5"
-                android:gravity="center"
-                android:text="Deliver"
-                android:textStyle="bold"
-                android:textAlignment="textStart"
-                android:textColor="@color/white" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/dispatch_layout"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/deliver_button">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight=".75"
-                android:gravity="end">
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="5dp"
-                    android:background="@drawable/tick_mark" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1.5"
-                android:gravity="center"
-                android:text="Dispatch"
-                android:textStyle="bold"
-                android:textAlignment="textStart"
-                android:textColor="@color/white" />
-
-        </LinearLayout>
-
-
-
-
-
-        <LinearLayout
-            android:id="@+id/cancel_layout"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/deliver_button">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight=".75"
-                android:gravity="end">
-
-                <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="5dp"
-                    android:background="@drawable/tick_mark" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="1.5"
+                android:layout_weight="1.1"
                 android:gravity="center"
                 android:text="Cancel"
                 android:textStyle="bold"
+                android:id="@+id/accept_btn"
                 android:textAlignment="textStart"
                 android:textColor="@color/white" />
 
