@@ -271,7 +271,7 @@
         android:layout_width="match_parent"
         android:background="@color/white"
         android:layout_marginLeft="5dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_marginRight="5dp"
         android:layout_height="50dp">
         <LinearLayout

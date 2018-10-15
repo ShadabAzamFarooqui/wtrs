@@ -1,11 +1,15 @@
 package com.example.berylsystems.watersupply.adapter;
 
 import android.content.Context;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.berylsystems.watersupply.R;
 import com.example.berylsystems.watersupply.activities.OrderActivity;
@@ -25,13 +29,15 @@ public class EmptyBottleAdapter extends RecyclerView.Adapter<EmptyBottleAdapter.
     private Context context;
     int mInteger = 0, totalAmount;
     OrderActivity object;
-    public static Map<Integer,Bottle> map;
+    public static Map<Integer, Bottle> map;
+    LinearLayout coordinatorLayout;
 
-    public EmptyBottleAdapter(Context context, List<String> data) {
+    public EmptyBottleAdapter(Context context, List<String> data,LinearLayout coordinatorLayout) {
         this.data = data;
         this.context = context;
         object = OrderActivity.context;
         map = new HashMap<>();
+        this.coordinatorLayout=coordinatorLayout;
     }
 
 
@@ -52,15 +58,24 @@ public class EmptyBottleAdapter extends RecyclerView.Adapter<EmptyBottleAdapter.
         viewHolder.layout_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (WaterDetailAdapter.map.get(position) == null) {
+                    Snackbar.make(coordinatorLayout, "Please the water first", Snackbar.LENGTH_SHORT).show();
+                    return;
+                } else if (WaterDetailAdapter.map.get(position).getQty() <= Integer.valueOf(viewHolder.mQuantity.getText().toString())) {
+                    Snackbar.make(coordinatorLayout, "You can't select empty bottle more than water", Snackbar.LENGTH_SHORT).show();
+                    return;
+                }
+
                 mInteger = Integer.parseInt(viewHolder.mQuantity.getText().toString());
                 mInteger = mInteger + 1;
                 viewHolder.mQuantity.setText("" + mInteger);
-                object.setTotal(""+(Double.valueOf(object.getTotal()) + Double.valueOf(arr[2])));
-                Bottle bottle=new Bottle();
+                object.setTotal("" + (Double.valueOf(object.getTotal()) + Double.valueOf(arr[2])));
+                Bottle bottle = new Bottle();
                 bottle.setName(arr[0]);
                 bottle.setRate(Double.valueOf(arr[2]));
                 bottle.setQty(Integer.valueOf(mInteger));
-                map.put(position,bottle);
+                map.put(position, bottle);
             }
         });
 
@@ -71,13 +86,13 @@ public class EmptyBottleAdapter extends RecyclerView.Adapter<EmptyBottleAdapter.
                 if (mInteger > 0) {
                     mInteger = mInteger - 1;
                     viewHolder.mQuantity.setText("" + mInteger);
-                    object.setTotal(""+(Double.valueOf(object.getTotal()) - Double.valueOf(arr[2])));
-                    Bottle bottle=new Bottle();
+                    object.setTotal("" + (Double.valueOf(object.getTotal()) - Double.valueOf(arr[2])));
+                    Bottle bottle = new Bottle();
                     bottle.setName(arr[0]);
                     bottle.setRate(Double.valueOf(arr[2]));
                     bottle.setQty(Integer.valueOf(arr[1]));
-                    map.put(position,bottle);
-                    if (viewHolder.mQuantity.getText().toString().equals("0")){
+                    map.put(position, bottle);
+                    if (viewHolder.mQuantity.getText().toString().equals("0")) {
                         map.remove(position);
                     }
                 }

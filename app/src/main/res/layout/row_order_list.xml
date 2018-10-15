@@ -370,7 +370,7 @@
             android:paddingLeft="10dp"
             android:text="Yoga"
             android:textAlignment="textStart"
-            android:textColor="@color/colorPrimary2"
+            android:textColor="@color/colorPrimary"
             android:textStyle="italic"
             android:visibility="gone" />
 

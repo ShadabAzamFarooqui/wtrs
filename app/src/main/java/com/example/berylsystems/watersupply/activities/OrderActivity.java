@@ -237,7 +237,7 @@ public class OrderActivity extends AppCompatActivity {
         mRecyclerView2.setNestedScrollingEnabled(false);
         linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView2.setLayoutManager(linearLayoutManager);
-        mAdapter2 = new EmptyBottleAdapter(this, appUser.supplier.getTypeRate());
+        mAdapter2 = new EmptyBottleAdapter(this, appUser.supplier.getTypeRate(),coordinatorLayout);
         mRecyclerView2.setAdapter(mAdapter2);
     }
 
