@@ -19,7 +19,7 @@ public class UserBean {
     String latitude;
     String longitude;
     String shopName;
-    List<String> typeRate;
+    List<Item> items;
     String openBooking;
     String closeBooking;
     String deliveryTime;
@@ -147,12 +147,12 @@ public class UserBean {
         this.shopName = shopName;
     }
 
-    public List<String> getTypeRate() {
-        return typeRate;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setTypeRate(List<String> typeRate) {
-        this.typeRate = typeRate;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
 

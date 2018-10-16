@@ -42,7 +42,7 @@ public class PayMentGateWay extends Activity {
     final Activity activity = this;
     private String tag = "PayMentGateWay";
     private String hash, hashSequence;
-    ProgressDialog  mProgressDialog;
+    ProgressDialog mProgressDialog;
 
 //    String merchant_key="qcT1sx"; // live
 //    String salt="pPIBMaGq"; // live
@@ -51,7 +51,7 @@ public class PayMentGateWay extends Activity {
     String salt = "eCwWELxi"; // test
     String action = "";
     String base_url = "https://test.payu.in";
-//    String base_url="https://secure.payu.in";//
+    //    String base_url="https://secure.payu.in";//
     int error = 0;
     String hashString = "";
     Map<String, String> params;
@@ -190,7 +190,7 @@ public class PayMentGateWay extends Activity {
                 //make sure dialog is showing
                 try {
 //                    mProgressDialog.show();
-                }catch (Exception e){
+                } catch (Exception e) {
                 }
             }
 
@@ -356,7 +356,7 @@ public class PayMentGateWay extends Activity {
 //                    } else {
 //                        Toast.makeText(getApplicationContext(), "Not Connected to intenet", Toast.LENGTH_LONG).show();
 //                    }*/
-                     new PostRechargeData().execute();
+                    new PostRechargeData().execute();
 //                    Intent intent=new Intent(PayMentGateWay.this,MainActivity.class);
 //                    startActivity(intent);
 //                    finish();
@@ -390,7 +390,7 @@ public class PayMentGateWay extends Activity {
                 public void run() {
 
 	                    /*Intent intent = new Intent();
-	                    intent.putExtra(Constants.RESULT, params);
+                        intent.putExtra(Constants.RESULT, params);
 	                    setResult(RESULT_CANCELED, intent);
 	                    finish();*/
                     Toast.makeText(getApplicationContext(), "Failed payment", Toast.LENGTH_LONG).show();
@@ -425,7 +425,7 @@ public class PayMentGateWay extends Activity {
         mHandler.post(new Runnable() {
             public void run() {
                 mHandler = null;
-                  new PostRechargeData().execute();
+                new PostRechargeData().execute();
                 Toast.makeText(getApplicationContext(), "Successfully payment\n redirect from Success Function", Toast.LENGTH_LONG).show();
 
             }
@@ -495,11 +495,9 @@ public class PayMentGateWay extends Activity {
     }
 
     /******************************************* send record to back end ******************************************/
-    class PostRechargeData extends AsyncTask<String, String, String>
-    {
+    class PostRechargeData extends AsyncTask<String, String, String> {
         @Override
-        protected void onPreExecute()
-        {
+        protected void onPreExecute() {
             super.onPreExecute();
             mProgressDialog = new ProgressDialog(PayMentGateWay.this);
             mProgressDialog.setMessage("Please wait...");
@@ -508,24 +506,22 @@ public class PayMentGateWay extends Activity {
             mProgressDialog.show();
 
         }
-        protected String doInBackground(String... args)
-        {
+
+        protected String doInBackground(String... args) {
+
             OrderActivity.context.postOrder(mProgressDialog);
             return "";
         }
 
-        protected void onPostExecute(final String strStatus)
-        {
+        protected void onPostExecute(final String strStatus) {
 
-            runOnUiThread(new Runnable()
-            {
-                public void run()
-                {
+            runOnUiThread(new Runnable() {
+                public void run() {
                     mProgressDialog.dismiss();
-                    if(strStatus != null && strStatus.equalsIgnoreCase("0")){
-                        Toast.makeText(getApplicationContext(),"Your recharge amount not added in wallet." ,Toast.LENGTH_LONG).show();
-                    }else if(strStatus != null && strStatus.equalsIgnoreCase("1")){
-                        Toast.makeText(getApplicationContext(),"Your recharge amount added in wallet." ,Toast.LENGTH_LONG).show();
+                    if (strStatus != null && strStatus.equalsIgnoreCase("0")) {
+                        Toast.makeText(getApplicationContext(), "Your recharge amount not added in wallet.", Toast.LENGTH_LONG).show();
+                    } else if (strStatus != null && strStatus.equalsIgnoreCase("1")) {
+                        Toast.makeText(getApplicationContext(), "Your recharge amount added in wallet.", Toast.LENGTH_LONG).show();
                     }
                     Intent intent = new Intent(activity, CustomerHomeActivity.class);
                     startActivity(intent);

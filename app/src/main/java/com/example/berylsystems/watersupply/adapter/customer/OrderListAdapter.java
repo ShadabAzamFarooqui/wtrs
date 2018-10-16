@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,14 +21,21 @@ import com.example.berylsystems.watersupply.activities.OrderActivity;
 import com.example.berylsystems.watersupply.adapter.HistoryListAdapter;
 import com.example.berylsystems.watersupply.bean.Combine;
 import com.example.berylsystems.watersupply.bean.OrderBean;
+import com.example.berylsystems.watersupply.bean.UserBean;
+import com.example.berylsystems.watersupply.fragment.customer.SupplierListFragment;
 import com.example.berylsystems.watersupply.fragment.supplier.DeliveredOrderFragment;
 import com.example.berylsystems.watersupply.fragment.supplier.PendingOrderFragment;
+import com.example.berylsystems.watersupply.utils.AppUser;
 import com.example.berylsystems.watersupply.utils.Helper;
+import com.example.berylsystems.watersupply.utils.LocalRepositories;
 import com.example.berylsystems.watersupply.utils.ParameterConstants;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.Bind;
@@ -121,6 +129,38 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                 }
             }
         });
+        viewHolder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (data.get(position).getStatus().equals(ParameterConstants.PENDING) || data.get(position).getStatus().equals(ParameterConstants.CANCEL)) {
+                    OrderActivity.isUpdateOrder = true;
+                    OrderActivity.key = data.get(position).getOrderId();
+                    AppUser appUser = LocalRepositories.getAppUser(context);
+                    UserBean supplier=getSupplier(position);
+                    String today=String.valueOf(Calendar.getInstance().getTime()).split(" ")[0];
+                    if (today.equalsIgnoreCase("Sun") && supplier.isSunday()) {
+                        setStatus(position,appUser);
+                    } else if (today.equalsIgnoreCase("Mon") && supplier.isMonday()) {
+                        setStatus(position,appUser);
+                    } else if (today.equalsIgnoreCase("Tue") && supplier.isTuesday()) {
+                        setStatus(position,appUser);
+                    } else if (today.equalsIgnoreCase("Wed") && supplier.isWednesday()) {
+                        setStatus(position,appUser);
+                    } else if (today.equalsIgnoreCase("Thu") && supplier.isThursday()) {
+                        setStatus(position,appUser);
+                    } else if (today.equalsIgnoreCase("Fri") && supplier.isFriday()) {
+                        setStatus(position,appUser);
+                    } else if (today.equalsIgnoreCase("Sat") && supplier.isSaturday()) {
+                        setStatus(position,appUser);
+                    } else {
+                        appUser.status="Booking Closed";
+                    }
+                    appUser.supplier = supplier;
+                    LocalRepositories.saveAppUser(context, appUser);
+                    context.startActivity(new Intent(context, OrderActivity.class));
+                }
+            }
+        });
     }
 
 
@@ -182,6 +222,8 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         TextView reason;
         @Bind(R.id.cancel)
         TextView cancel;
+        @Bind(R.id.mainLayout)
+        LinearLayout mainLayout;
 
 
         private ObjectAnimator anim;
@@ -231,4 +273,22 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                 .show();
     }
 
+
+    UserBean getSupplier(int position){
+        UserBean supplier=null;
+         for( int i=0;i< SupplierListFragment.userBeanList.size();i++){
+             if (data.get(position).getSupplier().getMobile().equals(SupplierListFragment.userBeanList.get(i).getMobile())){
+                 supplier=SupplierListFragment.userBeanList.get(i);
+             }
+         }
+        return supplier;
+    }
+
+    void setStatus(int position,AppUser appUser){
+        if (Helper.checkDate(data.get(position).getSupplier().getDeliveryTime(), data.get(position).getSupplier().getCloseBooking())) {
+            appUser.status="Booking Open";
+        } else {
+            appUser.status="Booking Closed";
+        }
+    }
 }

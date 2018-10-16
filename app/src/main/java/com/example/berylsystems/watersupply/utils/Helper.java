@@ -175,4 +175,39 @@ public class Helper {
         return day;
     }
 
+
+    public static boolean checkDate(String start, String end) {
+        long date = System.currentTimeMillis();
+        SimpleDateFormat sdf = new SimpleDateFormat("hh.mm aa");
+        String startDate = sdf.format(date);
+        String endDate = end;
+        String diff = getTimeDifferent(startDate, endDate);
+        String deliveryTime=start.split(" ")[0];
+        if (deliveryTime.equals("30")){
+            deliveryTime=".30";
+        }
+        if (Double.valueOf(diff) >= Double.valueOf(deliveryTime)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean checkDate(Context context) {
+        AppUser appUser=LocalRepositories.getAppUser(context);
+        long date = System.currentTimeMillis();
+        SimpleDateFormat sdf = new SimpleDateFormat("hh.mm aa");
+        String startDate = sdf.format(date);
+        String endDate = appUser.supplier.getCloseBooking();
+        String diff = Helper.getTimeDifferent(startDate, endDate);
+        String deliveryTime=appUser.supplier.getDeliveryTime().split(" ")[0];
+        if (deliveryTime.equals("30")){
+            deliveryTime=".30";
+        }
+        if (Double.valueOf(diff) >= Double.valueOf(deliveryTime)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

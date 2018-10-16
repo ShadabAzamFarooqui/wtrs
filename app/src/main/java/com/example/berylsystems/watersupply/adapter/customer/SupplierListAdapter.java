@@ -91,6 +91,7 @@ public class SupplierListAdapter extends RecyclerView.Adapter<SupplierListAdapte
                 appUser.supplier = data.get(position);
                 appUser.status = viewHolder.status.getText().toString();
                 LocalRepositories.saveAppUser(context, appUser);
+                OrderActivity.isUpdateOrder=false;
                 context.startActivity(new Intent(context, OrderActivity.class));
             }
         });
@@ -141,25 +142,8 @@ public class SupplierListAdapter extends RecyclerView.Adapter<SupplierListAdapte
     }
 
 
-    boolean checkDate(String start, String end) {
-        long date = System.currentTimeMillis();
-        SimpleDateFormat sdf = new SimpleDateFormat("hh.mm aa");
-        String startDate = sdf.format(date);
-        String endDate = end;
-        String diff = Helper.getTimeDifferent(startDate, endDate);
-        String deliveryTime=start.split(" ")[0];
-        if (deliveryTime.equals("30")){
-            deliveryTime=".30";
-        }
-        if (Double.valueOf(diff) >= Double.valueOf(deliveryTime)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     void setStatus(ViewHolder viewHolder,int position){
-        if (checkDate(data.get(position).getDeliveryTime(), data.get(position).getCloseBooking())) {
+        if (Helper.checkDate(data.get(position).getDeliveryTime(), data.get(position).getCloseBooking())) {
             viewHolder.status.setText("Booking Open");
         } else {
             viewHolder.status.setText("Booking Closed");

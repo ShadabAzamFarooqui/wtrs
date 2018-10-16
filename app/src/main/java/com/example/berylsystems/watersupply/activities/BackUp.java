@@ -284,7 +284,7 @@ public class BackUp extends AppCompatActivity {
         userBean.setPassword(mPassword.getText().toString());
         userBean.setAddress(mAddress.getText().toString().trim());
         userBean.setShopName(mShop_name.getText().toString().trim());
-        userBean.setTypeRate(typeRateList);
+//        userBean.setItems(typeRateList);
         try {
             userBean.setLatitude(String.valueOf(ParameterConstants.location.getLatitude()));
             userBean.setLongitude(String.valueOf(ParameterConstants.location.getLongitude()));

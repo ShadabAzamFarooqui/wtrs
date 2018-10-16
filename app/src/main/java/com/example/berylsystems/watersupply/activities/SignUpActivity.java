@@ -344,42 +344,50 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     private void registerUser(UserBean userBean) {
-        mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-            @Override
-            public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-                Toast.makeText(SignUpActivity.this, "verification done", Toast.LENGTH_LONG).show();
-                insertUpdate(ParameterConstants.location.getLatitude(), ParameterConstants.location.getLongitude());
-            }
 
-            @Override
-            public void onVerificationFailed(FirebaseException e) {
-                progressDialog.dismiss();
-                Toast.makeText(SignUpActivity.this, "" + e, Toast.LENGTH_SHORT).show();
-                System.out.println("aaaaaaaaaaaaa  " + e);
-                System.out.println("aaaaaaaaaaaaa  " + e.getMessage());
-                if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                    Toast.makeText(SignUpActivity.this, "invalid mob no", Toast.LENGTH_LONG).show();
-                } else if (e instanceof FirebaseTooManyRequestsException) {
-                    Toast.makeText(SignUpActivity.this, "quota over", Toast.LENGTH_LONG).show();
-                }
-            }
+//have to remove
+        insertUpdate(ParameterConstants.location.getLatitude(), ParameterConstants.location.getLongitude());
 
-            @Override
-            public void onCodeSent(String verificationId,
-                                   PhoneAuthProvider.ForceResendingToken token) {
-                progressDialog.dismiss();
-                Toast.makeText(SignUpActivity.this, "Verification code sent", Toast.LENGTH_LONG).show();
-                mVerificationId = verificationId;
-                mResendToken = token;
-                dialog.show();
-            }
-        };
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                "+91" + userBean.getMobile(),             // Phone number to verify
-                60,                      // Timeout duration
-                TimeUnit.SECONDS,        // Unit of timeout
-                SignUpActivity.this,   // Activity (for callback binding)
-                mCallbacks);         // OnVerificationStateChangedCallbacks
+
+//have to uncomment for otp
+
+
+//        mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+//            @Override
+//            public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+//                Toast.makeText(SignUpActivity.this, "verification done", Toast.LENGTH_LONG).show();
+//                insertUpdate(ParameterConstants.location.getLatitude(), ParameterConstants.location.getLongitude());
+//            }
+//
+//            @Override
+//            public void onVerificationFailed(FirebaseException e) {
+//                progressDialog.dismiss();
+//                Toast.makeText(SignUpActivity.this, "" + e, Toast.LENGTH_SHORT).show();
+//                System.out.println("aaaaaaaaaaaaa  " + e);
+//                System.out.println("aaaaaaaaaaaaa  " + e.getMessage());
+//                if (e instanceof FirebaseAuthInvalidCredentialsException) {
+//                    Toast.makeText(SignUpActivity.this, "invalid mob no", Toast.LENGTH_LONG).show();
+//                } else if (e instanceof FirebaseTooManyRequestsException) {
+//                    Toast.makeText(SignUpActivity.this, "quota over", Toast.LENGTH_LONG).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onCodeSent(String verificationId,
+//                                   PhoneAuthProvider.ForceResendingToken token) {
+//                progressDialog.dismiss();
+//                Toast.makeText(SignUpActivity.this, "Verification code sent", Toast.LENGTH_LONG).show();
+//                mVerificationId = verificationId;
+//                mResendToken = token;
+//                dialog.show();
+//            }
+//        };
+//        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+//                "+91" + userBean.getMobile(),             // Phone number to verify
+//                60,                      // Timeout duration
+//                TimeUnit.SECONDS,        // Unit of timeout
+//                SignUpActivity.this,   // Activity (for callback binding)
+//                mCallbacks);         // OnVerificationStateChangedCallbacks
     }
 
 

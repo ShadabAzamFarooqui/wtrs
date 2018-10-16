@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.berylsystems.watersupply.R;
 import com.example.berylsystems.watersupply.activities.OrderActivity;
+import com.example.berylsystems.watersupply.bean.Item;
 import com.example.berylsystems.watersupply.bean.Water;
 
 import java.util.HashMap;
@@ -21,13 +22,13 @@ import butterknife.ButterKnife;
 
 public class WaterDetailAdapter extends RecyclerView.Adapter<WaterDetailAdapter.ViewHolder> {
 
-    private List<String> data;
+    private List<Item> data;
     private Context context;
     int mInteger = 0, totalAmount;
     OrderActivity object;
     public static Map<Integer,Water> map;
 
-    public WaterDetailAdapter(Context context, List<String> data) {
+    public WaterDetailAdapter(Context context, List<Item> data) {
         this.data = data;
         this.context = context;
         object = OrderActivity.context;
@@ -44,9 +45,10 @@ public class WaterDetailAdapter extends RecyclerView.Adapter<WaterDetailAdapter.
     @Override
     public void onBindViewHolder(WaterDetailAdapter.ViewHolder viewHolder, int position) {
         mInteger = 0;
-        String[] arr = data.get(position).split(",");
-        viewHolder.water_type.setText(arr[0]);
-        viewHolder.water_rate.setText("(\u20B9" + arr[1] + ")");
+//        Normal Water,10,150
+        Item item = data.get(position);
+        viewHolder.water_type.setText(item.getName());
+        viewHolder.water_rate.setText("(\u20B9" +item.getWaterRate() + ")");
         // viewHolder.water_type.setText(data.get(position).split(",")[0]+" ( ₹ "+data.get(position).split(",")[1]+")");
 
         viewHolder.layout_plus.setOnClickListener(new View.OnClickListener() {
@@ -55,10 +57,10 @@ public class WaterDetailAdapter extends RecyclerView.Adapter<WaterDetailAdapter.
                 mInteger = Integer.parseInt(viewHolder.mQuantity.getText().toString());
                 mInteger = mInteger + 1;
                 viewHolder.mQuantity.setText("" + mInteger);
-                object.setTotal(""+(Double.valueOf(object.getTotal()) + Double.valueOf(arr[1])));
+                object.setTotal(""+(Double.valueOf(object.getTotal()) + Double.valueOf(item.getWaterRate())));
                 Water water=new Water();
-                water.setName(arr[0]);
-                water.setRate(Double.valueOf(arr[1]));
+                water.setName(item.getName());
+                water.setRate(Double.valueOf(item.getWaterRate()));
                 water.setQty(Integer.valueOf(mInteger));
                 map.put(position,water);
             }
@@ -71,11 +73,11 @@ public class WaterDetailAdapter extends RecyclerView.Adapter<WaterDetailAdapter.
                 if (mInteger > 0) {
                     mInteger = mInteger - 1;
                     viewHolder.mQuantity.setText("" + mInteger);
-                    object.setTotal(""+(Double.valueOf(object.getTotal()) - Double.valueOf(arr[1])));
+                    object.setTotal(""+(Double.valueOf(object.getTotal()) - Double.valueOf(item.getWaterRate())));
                     Water water=new Water();
-                    water.setName(arr[0]);
-                    water.setRate(Double.valueOf(arr[2]));
-                    water.setQty(Integer.valueOf(arr[1]));
+                    water.setName(item.getName());
+                    water.setRate(Double.valueOf(item.getBottleRate()));
+                    water.setQty(Integer.valueOf(item.getWaterRate()));
                     map.put(position,water);
                     if (viewHolder.mQuantity.getText().toString().equals("0")){
                         map.remove(position);

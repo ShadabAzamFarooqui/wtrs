@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -30,6 +29,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.berylsystems.watersupply.R;
+import com.example.berylsystems.watersupply.bean.Item;
 import com.example.berylsystems.watersupply.bean.UserBean;
 import com.example.berylsystems.watersupply.utils.AppUser;
 import com.example.berylsystems.watersupply.utils.Helper;
@@ -159,10 +159,10 @@ public class SignUp3Activity extends AppCompatActivity {
         }
 
         removeView();
-        if (userBean.getTypeRate() != null) {
-            for (int i = 0; i < userBean.getTypeRate().size(); i++) {
-                String[] str = userBean.getTypeRate().get(i).split(",");
-                addView(str[0], str[1], str[2]);
+        if (userBean.getItems() != null) {
+            for (int i = 0; i < userBean.getItems().size(); i++) {
+                Item item = userBean.getItems().get(i);
+                addView(item.getName(), item.getWaterRate(), item.getBottleRate());
             }
         }
         if (userBean.isSunday()) {
@@ -269,7 +269,7 @@ public class SignUp3Activity extends AppCompatActivity {
                     return;
                 }
 
-                List list = new ArrayList();
+                List<Item> list = new ArrayList();
                 for (int i = 0; i < ((ViewGroup) mAdd_water).getChildCount(); i++) {
                     View v = ((ViewGroup) mAdd_water).getChildAt(i);
                     EditText waterType = v.findViewById(R.id.water_type);
@@ -287,7 +287,11 @@ public class SignUp3Activity extends AppCompatActivity {
                         Snackbar.make(mainLayout, "Enter Empty Bottle Rate", Snackbar.LENGTH_LONG).show();
                         return;
                     }
-                    list.add(waterType.getText().toString() + "," + waterRate.getText().toString() + "," + bottleRate.getText().toString());
+                    Item item=new Item();
+                    item.setName(waterType.getText().toString());
+                    item.setWaterRate(waterRate.getText().toString());
+                    item.setBottleRate(bottleRate.getText().toString());
+                    list.add(item);
                 }
 
                 userBean.setLatitude("" + ParameterConstants.location.getLatitude());
@@ -296,7 +300,7 @@ public class SignUp3Activity extends AppCompatActivity {
                 userBean.setCloseBooking(closeBooking.getText().toString());
                 userBean.setDeliveryDistance(deliveryDistance.getText().toString());
                 userBean.setDeliveryTime(deliveryTime.getSelectedItem().toString());
-                userBean.setTypeRate(list);
+                userBean.setItems(list);
                 userBean.setSunday(sunday.isChecked());
                 userBean.setMonday(monday.isChecked());
                 userBean.setTuesday(tuesday.isChecked());
@@ -483,43 +487,53 @@ public class SignUp3Activity extends AppCompatActivity {
     }
 
     private void registerUser(UserBean userBean) {
-        mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
-            @Override
-            public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-                Toast.makeText(getApplicationContext(), "verification done", Toast.LENGTH_LONG).show();
-                insertUpdate(ParameterConstants.location.getLatitude(), ParameterConstants.location.getLongitude());
-            }
+//have to remove
+        insertUpdate(ParameterConstants.location.getLatitude(), ParameterConstants.location.getLongitude());
 
-            @Override
-            public void onVerificationFailed(FirebaseException e) {
-                progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "" + e, Toast.LENGTH_SHORT).show();
-                System.out.println("aaaaaaaaaaaaa  " + e);
-                System.out.println("aaaaaaaaaaaaa  " + e.getMessage());
-                if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                    Toast.makeText(getApplicationContext(), "invalid mob no", Toast.LENGTH_LONG).show();
-                } else if (e instanceof FirebaseTooManyRequestsException) {
-                    Toast.makeText(getApplicationContext(), "quota over", Toast.LENGTH_LONG).show();
-                }
-            }
 
-            @Override
-            public void onCodeSent(String verificationId,
-                                   PhoneAuthProvider.ForceResendingToken token) {
-                progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Verification code sent", Toast.LENGTH_LONG).show();
-                mVerificationId = verificationId;
-                mResendToken = token;
-                dialog.show();
-            }
-        };
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                "+91" + userBean.getMobile(),             // Phone number to verify
-                60,                      // Timeout duration
-                TimeUnit.SECONDS,        // Unit of timeout
-                SignUp3Activity.this,   // Activity (for callback binding)
-                mCallbacks);         // OnVerificationStateChangedCallbacks
+
+
+//have to uncomment for otp
+
+
+//        mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+//
+//            @Override
+//            public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+//                Toast.makeText(getApplicationContext(), "verification done", Toast.LENGTH_LONG).show();
+//                insertUpdate(ParameterConstants.location.getLatitude(), ParameterConstants.location.getLongitude());
+//            }
+//
+//            @Override
+//            public void onVerificationFailed(FirebaseException e) {
+//                progressDialog.dismiss();
+//                Toast.makeText(getApplicationContext(), "" + e, Toast.LENGTH_SHORT).show();
+//                System.out.println("aaaaaaaaaaaaa  " + e);
+//                System.out.println("aaaaaaaaaaaaa  " + e.getMessage());
+//                if (e instanceof FirebaseAuthInvalidCredentialsException) {
+//                    Toast.makeText(getApplicationContext(), "invalid mob no", Toast.LENGTH_LONG).show();
+//                } else if (e instanceof FirebaseTooManyRequestsException) {
+//                    Toast.makeText(getApplicationContext(), "quota over", Toast.LENGTH_LONG).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onCodeSent(String verificationId,
+//                                   PhoneAuthProvider.ForceResendingToken token) {
+//                progressDialog.dismiss();
+//                Toast.makeText(getApplicationContext(), "Verification code sent", Toast.LENGTH_LONG).show();
+//                mVerificationId = verificationId;
+//                mResendToken = token;
+//                dialog.show();
+//            }
+//        };
+//        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+//                "+91" + userBean.getMobile(),             // Phone number to verify
+//                60,                      // Timeout duration
+//                TimeUnit.SECONDS,        // Unit of timeout
+//                SignUp3Activity.this,   // Activity (for callback binding)
+//                mCallbacks);         // OnVerificationStateChangedCallbacks
     }
 
     @Override

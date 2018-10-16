@@ -31,6 +31,7 @@ import com.example.berylsystems.watersupply.adapter.WaterDetailAdapter;
 import com.example.berylsystems.watersupply.bean.Bottle;
 import com.example.berylsystems.watersupply.bean.Combine;
 import com.example.berylsystems.watersupply.bean.OrderBean;
+import com.example.berylsystems.watersupply.bean.UserBean;
 import com.example.berylsystems.watersupply.bean.Water;
 import com.example.berylsystems.watersupply.utils.AppUser;
 import com.example.berylsystems.watersupply.utils.Helper;
@@ -77,11 +78,13 @@ public class OrderActivity extends AppCompatActivity {
     CheckBox mCheckBoxEmptyBottle;
 
     @Bind(R.id.recycler_view)
-    RecyclerView mRecyclerView;
+    RecyclerView mRecyclerViewWater;
     @Bind(R.id.recycler_view2)
-    RecyclerView mRecyclerView2;
+    RecyclerView mRecyclerViewBottle;
     @Bind(R.id.view)
     View view;
+    @Bind(R.id.submit)
+    Button mSubmit;
     LinearLayoutManager linearLayoutManager;
     WaterDetailAdapter mAdapter;
     EmptyBottleAdapter mAdapter2;
@@ -92,13 +95,13 @@ public class OrderActivity extends AppCompatActivity {
     AppUser appUser;
     int endTime = 15;
     public static OrderActivity context;
-    public static boolean isKeyPadOpen;
-
     DatePickerDialog datePickerDialog;
     String dateString;
     String format = "dd MMM yyyy";
     String today;
     String tomorrow;
+    public static boolean isUpdateOrder;
+    public static String key;
 
 
     @Override
@@ -150,17 +153,17 @@ public class OrderActivity extends AppCompatActivity {
         });
 
 
-        mRecyclerView2.setVisibility(View.GONE);
+        mRecyclerViewBottle.setVisibility(View.GONE);
         view.setVisibility(View.GONE);
         mCheckBoxEmptyBottle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (!b) {
-                    mRecyclerView2.setVisibility(View.VISIBLE);
+                    mRecyclerViewBottle.setVisibility(View.VISIBLE);
                     view.setVisibility(View.VISIBLE);
                     setAdapter2();
                 } else {
-                    mRecyclerView2.setVisibility(View.GONE);
+                    mRecyclerViewBottle.setVisibility(View.GONE);
                     view.setVisibility(View.GONE);
                     Set<Integer> set = EmptyBottleAdapter.map.keySet();
                     double r = 0.0;
@@ -176,7 +179,7 @@ public class OrderActivity extends AppCompatActivity {
             }
         });
 
-        if (checkDate() || appUser.status.contains("C")) {
+        if (!Helper.checkDate(this) || appUser.status.contains("C")) {
             tomorrowView();
             mDate_time.setText("" + tomorrow + " Between " + appUser.supplier.getOpenBooking() + " to " + appUser.supplier.getCloseBooking());
 
@@ -189,7 +192,7 @@ public class OrderActivity extends AppCompatActivity {
         mToday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (checkDate() || appUser.status.contains("C")) {
+                if (!Helper.checkDate(context) || appUser.status.contains("C")) {
                     Snackbar.make(coordinatorLayout, "Booking Closed", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -211,34 +214,31 @@ public class OrderActivity extends AppCompatActivity {
         setAdapter();
         setAdapter2();
 
-//        KeyboardVisibilityEvent.setEventListener(this, new KeyboardVisibilityEventListener() {
-//            @Override
-//            public void onVisibilityChanged(boolean isOpen) {
-//                isKeyPadOpen = isOpen;
-//            }
-//        });
+        if (isUpdateOrder) {
+            mSubmit.setText("Update Order");
+        }
 
     }
 
 
     void setAdapter() {
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setFocusable(false);
-        mRecyclerView.setNestedScrollingEnabled(false);
+        mRecyclerViewWater.setHasFixedSize(true);
+        mRecyclerViewWater.setFocusable(false);
+        mRecyclerViewWater.setNestedScrollingEnabled(false);
         linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-        mRecyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new WaterDetailAdapter(this, appUser.supplier.getTypeRate());
-        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerViewWater.setLayoutManager(linearLayoutManager);
+        mAdapter = new WaterDetailAdapter(this, appUser.supplier.getItems());
+        mRecyclerViewWater.setAdapter(mAdapter);
     }
 
     void setAdapter2() {
-        mRecyclerView2.setHasFixedSize(true);
-        mRecyclerView2.setFocusable(false);
-        mRecyclerView2.setNestedScrollingEnabled(false);
+        mRecyclerViewBottle.setHasFixedSize(true);
+        mRecyclerViewBottle.setFocusable(false);
+        mRecyclerViewBottle.setNestedScrollingEnabled(false);
         linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-        mRecyclerView2.setLayoutManager(linearLayoutManager);
-        mAdapter2 = new EmptyBottleAdapter(this, appUser.supplier.getTypeRate(),coordinatorLayout);
-        mRecyclerView2.setAdapter(mAdapter2);
+        mRecyclerViewBottle.setLayoutManager(linearLayoutManager);
+        mAdapter2 = new EmptyBottleAdapter(this, appUser.supplier.getItems(), coordinatorLayout);
+        mRecyclerViewBottle.setAdapter(mAdapter2);
     }
 
 
@@ -273,7 +273,7 @@ public class OrderActivity extends AppCompatActivity {
                 }, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH));
                 datePickerDialog.show();
                 Calendar cal = Calendar.getInstance();
-                if (checkDate() || appUser.status.contains("C")) {
+                if (!Helper.checkDate(context) || appUser.status.contains("C")) {
                     cal.add(Calendar.DAY_OF_YEAR, 1);
                     datePickerDialog.getDatePicker().setMinDate(cal.getTimeInMillis());
                     cal.add(Calendar.DAY_OF_YEAR, 6);
@@ -317,11 +317,11 @@ public class OrderActivity extends AppCompatActivity {
                 Snackbar.make(coordinatorLayout, "Please Select the Bottle", Snackbar.LENGTH_SHORT).show();
                 return;
             }
-            CustomerHomeActivity.bool=true;
+            CustomerHomeActivity.bool = true;
             intent.putExtra("amount", total.getText().toString());
             startActivity(intent);
         } else {
-            CustomerHomeActivity.bool=true;
+            CustomerHomeActivity.bool = true;
             postOrder(progressDialog);
         }
     }
@@ -378,17 +378,20 @@ public class OrderActivity extends AppCompatActivity {
         orderBean.setAmount(total.getText().toString());
         orderBean.setAddress(mAddress.getText().toString());
         orderBean.setStatus(ParameterConstants.PENDING);
-        if (checkDate()) {
+        if (!Helper.checkDate(context)) {
             tomorrowView();
             mDate_time.setText("" + tomorrow + " Between " + appUser.supplier.getOpenBooking() + " to " + appUser.supplier.getCloseBooking());
             Snackbar.make(coordinatorLayout, "Booking Closed", Toast.LENGTH_SHORT).show();
             return;
         }
         progressDialog.show();
-        String key = databaseReference.push().getKey();
+        String key;
+        if (isUpdateOrder){
+            key = OrderActivity.key;
+        }else {
+            key = databaseReference.push().getKey();
+        }
         orderBean.setOrderId(key);
-
-
         databaseReference.child(key).setValue(orderBean, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
@@ -404,83 +407,12 @@ public class OrderActivity extends AppCompatActivity {
 
     }
 
+
     public String getTotal() {
         return total.getText().toString();
     }
 
     public void setTotal(String total_amount) {
         total.setText(total_amount);
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-    }
-
-    boolean checkDate() {
-        long date = System.currentTimeMillis();
-        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm aa");
-        String startDate = sdf.format(date);
-        String endDate = appUser.supplier.getCloseBooking();
-        String diff = Helper.getTimeDifferent(startDate, endDate);
-        if (Double.valueOf(diff) >= Double.valueOf(appUser.supplier.getDeliveryTime().split(" ")[0])) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
-    void showPopup(TextView emptyBottle, TextView total) {
-        dialog = new Dialog(OrderActivity.this);
-        dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.cancel_order_dailog);
-        dialog.setCancelable(false);
-        EditText quantity = (EditText) dialog.findViewById(R.id.message);
-        LocalRepositories.saveAppUser(getApplicationContext(), appUser);
-        Button submit = (Button) dialog.findViewById(R.id.dialogSubmit);
-        LinearLayout close = (LinearLayout) dialog.findViewById(R.id.close);
-
-        quantity.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                Helper.closeKeyPad(OrderActivity.this, isKeyPadOpen);
-            }
-        });
-        dialog.show();
     }
 }
