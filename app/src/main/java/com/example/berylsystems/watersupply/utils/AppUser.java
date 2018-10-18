@@ -4,6 +4,7 @@ import com.example.berylsystems.watersupply.bean.UserBean;
 
 public class AppUser {
     public UserBean user;
+    public UserBean userTemp;
     public UserBean supplier;
     public String status;
 }

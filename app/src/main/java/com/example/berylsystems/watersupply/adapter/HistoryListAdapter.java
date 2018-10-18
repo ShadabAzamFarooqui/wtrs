@@ -69,6 +69,16 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
             viewHolder.comment.setText(data.get(position).getComment());
         }
         viewHolder.bind(data.get(position).getStatus());
+
+        if (data.get(position).getStatus().equals(ParameterConstants.CANCEL)) {
+            viewHolder.cancel.setVisibility(View.VISIBLE);
+            viewHolder.reason.setVisibility(View.VISIBLE);
+            viewHolder.reason.setText(data.get(position).getReason());
+        } else {
+            viewHolder.cancel.setVisibility(View.GONE);
+            viewHolder.reason.setVisibility(View.GONE);
+        }
+
         removeAllViews(viewHolder);
         try {
             for (int i = 0; i < data.get(position).combine().size(); i++) {
@@ -150,6 +160,10 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
         LinearLayout parentLayout;
         @Bind(R.id.amount)
         TextView amount;
+        @Bind(R.id.cancel)
+        TextView cancel;
+        @Bind(R.id.reason)
+        TextView reason;
 
 
         private ObjectAnimator anim;

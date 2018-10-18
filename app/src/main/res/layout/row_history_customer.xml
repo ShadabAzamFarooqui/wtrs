@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/border_color"
     android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mainLayout"
+        android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/main_layout"
@@ -334,12 +340,41 @@
         android:textColor="#949494"
         android:textStyle="italic" />
 
+        <com.example.berylsystems.watersupply.utils.BuzzTextView
+            android:id="@+id/reason"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:text="reason"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="italic"
+            android:visibility="gone" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:background="@color/border_color" />
 
-</LinearLayout>
+    </LinearLayout>
+    <com.example.berylsystems.watersupply.utils.BuzzTextView
+        android:layout_width="wrap_content"
+        android:id="@+id/cancel"
+        android:layout_height="wrap_content"
+        android:rotation="-45"
+        android:textSize="25dp"
+        style="@style/Gotham_Bold"
+        android:paddingLeft="80dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:text="Canceled"/>
+
+</RelativeLayout>
 
 
 

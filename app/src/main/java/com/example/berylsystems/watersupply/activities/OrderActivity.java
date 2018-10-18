@@ -102,7 +102,7 @@ public class OrderActivity extends AppCompatActivity {
     String tomorrow;
     public static boolean isUpdateOrder;
     public static String key;
-
+    public static List<Combine> orderedItemList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -211,13 +211,19 @@ public class OrderActivity extends AppCompatActivity {
         });
 
         dateDialog(mOpen_calender, mDate_time);
+
         setAdapter();
         setAdapter2();
-
-        if (isUpdateOrder) {
+        if (isUpdateOrder){
             mSubmit.setText("Update Order");
+//            for (int i=0;i<orderedItemList.size();i++){
+//                for (int j=0;j<appUser.supplier.getItems().size();j++){
+//                    if (orderedItemList.get(i).getWater().getName().equals(appUser.supplier.getItems().get(j).getName()))
+//                        WaterDetailAdapter.map.put(j,orderedItemList.get(i).getWater());
+//                }
+//            }
         }
-
+//        mAdapter.notifyDataSetChanged();
     }
 
 

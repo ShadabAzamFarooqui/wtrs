@@ -137,6 +137,8 @@ public class SignUp2Activity extends AppCompatActivity {
                 userBean.setEmail(mEmail.getText().toString());
                 userBean.setPassword(mPassword.getText().toString());
                 userBean.setAddress(mAddress.getText().toString());
+                appUser.userTemp=userBean;
+                LocalRepositories.saveAppUser(getApplicationContext(),appUser);
                 startActivity(new Intent(getApplicationContext(), SignUp3Activity.class));
             }
         });

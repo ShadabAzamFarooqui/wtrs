@@ -293,7 +293,7 @@ public class SignUp3Activity extends AppCompatActivity {
                     item.setBottleRate(bottleRate.getText().toString());
                     list.add(item);
                 }
-
+                userBean=appUser.userTemp;
                 userBean.setLatitude("" + ParameterConstants.location.getLatitude());
                 userBean.setLongitude("" + ParameterConstants.location.getLongitude());
                 userBean.setOpenBooking(openBooking.getText().toString());

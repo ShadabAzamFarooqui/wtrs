@@ -132,7 +132,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         viewHolder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (data.get(position).getStatus().equals(ParameterConstants.PENDING) || data.get(position).getStatus().equals(ParameterConstants.CANCEL)) {
+                if (data.get(position).getStatus().equals(ParameterConstants.PENDING) ) {
                     OrderActivity.isUpdateOrder = true;
                     OrderActivity.key = data.get(position).getOrderId();
                     AppUser appUser = LocalRepositories.getAppUser(context);
@@ -156,6 +156,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
                         appUser.status="Booking Closed";
                     }
                     appUser.supplier = supplier;
+                    OrderActivity.orderedItemList=data.get(position).combine();
                     LocalRepositories.saveAppUser(context, appUser);
                     context.startActivity(new Intent(context, OrderActivity.class));
                 }
