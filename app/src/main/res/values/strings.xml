@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">wtrs</string>
+    <string name="app_name">WTRS</string>
     <string name="msg_perms_needed">Turn on your Location</string>
     <string name="btn_quit">Quit</string>
     <string name="btn_accept">Accept</string>
@@ -11,6 +11,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="powered_by">wtrs.com</string>
+    <string name="share_message">"Share the WTRS App with your friends to full fill your water requirement easily- Get the app- https://play.google.com/store/apps/details?id=com.android.app.watersupply"</string>
 
 
     <string-array name="deliverTime">

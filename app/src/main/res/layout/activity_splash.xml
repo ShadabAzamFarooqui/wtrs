@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorPrimary"
-    tools:context="com.example.berylsystems.watersupply.activities.SplashActivity">
+    tools:context="com.android.app.watersupply.activities.SplashActivity">
 
 
     <LinearLayout
@@ -26,7 +26,7 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/water"/>
 
-        <com.example.berylsystems.watersupply.utils.BuzzTextView
+        <com.android.app.watersupply.utils.BuzzTextView
             style="@style/Gotham_Book"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp">
 
-        <com.example.berylsystems.watersupply.utils.BuzzTextView
+        <com.android.app.watersupply.utils.BuzzTextView
             style="@style/Gotham_Book"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             android:textSize="10sp"
             android:text="Powered By:"/>
 
-        <com.example.berylsystems.watersupply.utils.BuzzTextView
+        <com.android.app.watersupply.utils.BuzzTextView
             android:id="@+id/powered"
             style="@style/Gotham_Book"
             android:layout_width="fill_parent"

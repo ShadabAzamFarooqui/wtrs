@@ -84,6 +84,18 @@
                            android:entries="@array/reason"/>
                    </LinearLayout>
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:paddingTop="2dp"
+                        android:id="@+id/error_textView"
+                        android:paddingLeft="15dp"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/red"
+                        android:text="Please select an option"/>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"

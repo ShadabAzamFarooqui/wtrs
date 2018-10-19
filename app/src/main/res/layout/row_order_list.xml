@@ -360,7 +360,7 @@
             android:textColor="#949494"
             android:textStyle="italic" />
 
-        <com.example.berylsystems.watersupply.utils.BuzzTextView
+        <com.android.app.watersupply.utils.BuzzTextView
             android:id="@+id/reason"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -382,7 +382,7 @@
 
     </LinearLayout>
 
-    <com.example.berylsystems.watersupply.utils.BuzzTextView
+    <com.android.app.watersupply.utils.BuzzTextView
         android:layout_width="wrap_content"
         android:id="@+id/cancel"
         android:layout_height="wrap_content"

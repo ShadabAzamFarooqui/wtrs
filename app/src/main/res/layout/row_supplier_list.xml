@@ -57,7 +57,7 @@
 
 
 
-        <com.example.berylsystems.watersupply.utils.BuzzTextView
+        <com.android.app.watersupply.utils.BuzzTextView
             android:id="@+id/shop_name"
             style="@style/Gotham_Medium"
             android:layout_width="match_parent"

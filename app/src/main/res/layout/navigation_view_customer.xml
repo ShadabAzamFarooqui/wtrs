@@ -339,7 +339,7 @@
                             android:text="Powered by"
                             android:textSize="10sp" />
 
-                        <com.example.berylsystems.watersupply.utils.BuzzTextView
+                        <com.android.app.watersupply.utils.BuzzTextView
                             android:layout_width="fill_parent"
                             style="@style/Gotham_Book"
                             android:textColor="@color/black"

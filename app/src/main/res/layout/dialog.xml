@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.example.berylsystems.watersupply.utils.BuzzTextView
+        <com.android.app.watersupply.utils.BuzzTextView
             style="@style/Gotham_Bold"
             android:layout_width="match_parent"
             android:layout_height="80dp"

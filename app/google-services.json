@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:370142890700:android:74ce2d0e56f660bd",
         "android_client_info": {
-          "package_name": "com.example.berylsystems.watersupply"
+          "package_name": "com.android.app.watersupply"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "370142890700-20uvlk5a7uc0c2sj9rerfp8pm8lc9mcg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.berylsystems.watersupply",
+            "package_name": "com.android.app.watersupply",
             "certificate_hash": "a9d2b9d4afffa1177e4792b35cecd6c40c2fc255"
           }
         },
@@ -26,7 +26,7 @@
           "client_id": "370142890700-67ilkl40reat5ag895a6mj4nml6pgolc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.berylsystems.watersupply",
+            "package_name": "com.android.app.watersupply",
             "certificate_hash": "f869fdb0edeb75e098024c05a57518c05146e587"
           }
         },
@@ -34,7 +34,7 @@
           "client_id": "370142890700-5asp4k8iv0s19sc83n8glgbnn1j3u1gs.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.berylsystems.watersupply",
+            "package_name": "com.android.app.watersupply",
             "certificate_hash": "32bcde6b09fb75f201a9ca040227afdd0585096d"
           }
         },
@@ -42,7 +42,7 @@
           "client_id": "370142890700-sh92m03p70mut0il067ntm2p6r6ibh6i.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.berylsystems.watersupply",
+            "package_name": "com.android.app.watersupply",
             "certificate_hash": "61e72a406952eb740bacdf1f79bd35c43c87b6e0"
           }
         },
@@ -50,7 +50,7 @@
           "client_id": "370142890700-m84vhput76178iosjpqgakq8dspais07.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.berylsystems.watersupply",
+            "package_name": "com.android.app.watersupply",
             "certificate_hash": "0351018c765a54437352514d85656efb9a6131bc"
           }
         },
