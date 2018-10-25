@@ -20,7 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.app.watersupply.R;
-import com.android.app.watersupply.activities.SupplierHomeActivity;
+import com.android.app.watersupply.activities.supplier.SupplierHomeActivity;
 import com.android.app.watersupply.bean.Combine;
 import com.android.app.watersupply.bean.OrderBean;
 import com.android.app.watersupply.fragment.supplier.CancelOrderFragment;

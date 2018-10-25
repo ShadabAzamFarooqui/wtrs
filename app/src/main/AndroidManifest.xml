@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.android.app.watersupply.activities.SplashActivity"
+        <activity
+            android:name=".activities.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
@@ -27,38 +28,40 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.android.app.watersupply.activities.SignUpActivity"
+            android:name=".activities.SignUpActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.android.app.watersupply.activities.SignInActivity" />
+        <activity android:name=".activities.SignInActivity" />
         <activity
-            android:name="com.android.app.watersupply.activities.CustomerHomeActivity"
+            android:name=".activities.customer.CustomerHomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.android.app.watersupply.activities.SupplierHomeActivity"
+            android:name=".activities.supplier.SupplierHomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.android.app.watersupply.activities.OrderActivity"
+            android:name=".activities.OrderActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.android.app.watersupply.activities.PayMentGateWay"
+            android:name=".activities.PayMentGateWay"
             android:screenOrientation="portrait" />
-        <activity android:name="com.android.app.watersupply.activities.SignUp2Activity" />
-        <activity android:name="com.android.app.watersupply.activities.SignUp3Activity" />
+        <activity android:name=".activities.SignUp2Activity" />
+        <activity android:name=".activities.SignUp3Activity" />
 
-        <service android:name="com.android.app.watersupply.push.MyFirebaseMessagingService">
+        <service android:name=".push.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service android:name="com.android.app.watersupply.push.MyFirebaseInstanceIDService">
+        <service android:name=".push.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 
-        <activity android:name="com.android.app.watersupply.activities.HistoryActivity"></activity>
+        <activity android:name=".activities.HistoryActivity" />
+        <activity android:name=".activities.customer.CustomerProfile" />
+        <activity android:name=".activities.supplier.SupplierProfile"></activity>
     </application>
 
 </manifest>

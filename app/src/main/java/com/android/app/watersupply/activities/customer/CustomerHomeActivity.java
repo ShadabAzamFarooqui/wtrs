@@ -1,4 +1,4 @@
-package com.android.app.watersupply.activities;
+package com.android.app.watersupply.activities.customer;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -37,11 +37,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.android.app.watersupply.R;
-import com.android.app.watersupply.fragment.supplier.CancelOrderFragment;
-import com.android.app.watersupply.fragment.supplier.DeliveredOrderFragment;
-import com.android.app.watersupply.fragment.supplier.DispatchOrderFragment;
-import com.android.app.watersupply.fragment.supplier.PendingOrderFragment;
+import com.android.app.watersupply.activities.HistoryActivity;
+import com.android.app.watersupply.activities.SignInActivity;
+import com.android.app.watersupply.activities.SignUpActivity;
+import com.android.app.watersupply.fragment.customer.OrderListFragment;
+import com.android.app.watersupply.fragment.customer.SupplierListFragment;
 import com.android.app.watersupply.utils.AppUser;
 import com.android.app.watersupply.utils.Helper;
 import com.android.app.watersupply.utils.LocalRepositories;
@@ -51,9 +53,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
-import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -72,7 +71,7 @@ import butterknife.ButterKnife;
  * Created by Shadab Azam Farooqui on 6/25/2018.
  */
 
-public class SupplierHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class CustomerHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     @Bind(R.id.viewpager)
     ViewPager mHeaderViewPager;
     @Bind(R.id.coordinatorLayout)
@@ -85,25 +84,20 @@ public class SupplierHomeActivity extends AppCompatActivity implements Navigatio
     AppUser appUser;
     DrawerLayout drawer;
     ArrayList<Uri> arrayListapkFilepath;
-    public static boolean isKeyPadOpen;
+    public static boolean bool = false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.navigation_view_supplier);
+        setContentView(R.layout.navigation_view_customer);
         ButterKnife.bind(this);
         appUser = LocalRepositories.getAppUser(this);
         setupViewPager(mHeaderViewPager);
         mTabLayout.setupWithViewPager(mHeaderViewPager);
         mHeaderViewPager.setOffscreenPageLimit(3);
         navigation();
-
-        KeyboardVisibilityEvent.setEventListener(this, new KeyboardVisibilityEventListener() {
-            @Override
-            public void onVisibilityChanged(boolean isOpen) {
-                isKeyPadOpen = isOpen;
-            }
-        });
     }
+
 
     void navigation() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -123,33 +117,30 @@ public class SupplierHomeActivity extends AppCompatActivity implements Navigatio
     }
 
     public void myAccount(View view) {
-
         drawer.closeDrawer(GravityCompat.START);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                ParameterConstants.isUpdate=true;
-                ParameterConstants.KEY = "Supplier";
-                drawer.closeDrawer(GravityCompat.START);
-                startActivity(new Intent(getApplicationContext(),SignUp2Activity.class));
+                ParameterConstants.isUpdate = true;
+                ParameterConstants.KEY = "Customer";
+                startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
             }
-        },400);
-
+        }, 400);
 
     }
-    public void history(View view){
+
+    public void history(View view) {
         drawer.closeDrawer(GravityCompat.START);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                HistoryActivity.userType="Supplier";
-                startActivity(new Intent(getApplicationContext(),HistoryActivity.class));
+                HistoryActivity.userType = "Customer";
+                startActivity(new Intent(getApplicationContext(), HistoryActivity.class));
             }
-        },400);
-
+        }, 400);
     }
 
-    public void share(View v){
+    public void share(View v) {
         drawer.closeDrawers();
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -176,6 +167,10 @@ public class SupplierHomeActivity extends AppCompatActivity implements Navigatio
     }
 
 
+
+
+
+    //Method
     public void shareAPK(String bundle_id) {
         File f1;
         File f2 = null;
@@ -235,10 +230,8 @@ public class SupplierHomeActivity extends AppCompatActivity implements Navigatio
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new PendingOrderFragment(), "Pending");
-        adapter.addFragment(new DispatchOrderFragment(), "Dispatch");
-        adapter.addFragment(new DeliveredOrderFragment(), "Delivered");
-        adapter.addFragment(new CancelOrderFragment(), "Canceled");
+        adapter.addFragment(new OrderListFragment(), "Order");
+        adapter.addFragment(new SupplierListFragment(), "Supplier");
         viewPager.setAdapter(adapter);
     }
 
@@ -272,24 +265,27 @@ public class SupplierHomeActivity extends AppCompatActivity implements Navigatio
         }
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
+//        buildAlertMessageNoGps();
         Helper.initActionbar(this, getSupportActionBar(), "Home Page", false);
+//        appUser = LocalRepositories.getAppUser(this);
+//        setupViewPager(mHeaderViewPager);
+//        mTabLayout.setupWithViewPager(mHeaderViewPager);
+//        mHeaderViewPager.setCurrentItem(1, true);
+
         if (!Helper.isNetworkAvailable(getApplicationContext())) {
             Snackbar.make(coordinatorLayout, "Please check your network connection", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
             return;
         }
-//        if (bool) {
-//            mHeaderViewPager.setCurrentItem(1, true);
-//        } else {
-//            mHeaderViewPager.setCurrentItem(0, true);
-//        }
+        if (bool) {
+            bool = false;
+            mHeaderViewPager.setCurrentItem(0, true);
+        }
         versionCheck();
     }
-
 
     void versionCheck() {
         database = FirebaseDatabase.getInstance();
@@ -307,12 +303,12 @@ public class SupplierHomeActivity extends AppCompatActivity implements Navigatio
                         }
                         String versionName = packageInfo.versionName;
                         if (!version.equals(versionName)) {
-                            android.app.AlertDialog.Builder alert = new android.app.AlertDialog.Builder(SupplierHomeActivity.this);
+                            android.app.AlertDialog.Builder alert = new android.app.AlertDialog.Builder(CustomerHomeActivity.this);
                             alert.setCancelable(false);
                             alert.setMessage("A new version of Water Supply is available.Please update to version " + version + " now.");
                             alert.setPositiveButton("Update", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    Intent i = new Intent(Intent.ACTION_VIEW);
+                                    Intent i = new Intent(android.content.Intent.ACTION_VIEW);
                                     i.setData(Uri.parse("https://play.google.com/store/apps"));
                                     startActivity(i);
                                 }
@@ -335,6 +331,10 @@ public class SupplierHomeActivity extends AppCompatActivity implements Navigatio
 
     @Override
     public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+            return;
+        }
         if (isExit) {
             super.onBackPressed();
         }
@@ -362,7 +362,7 @@ public class SupplierHomeActivity extends AppCompatActivity implements Navigatio
             appUser.user = null;
             LocalRepositories.saveAppUser(getApplicationContext(), appUser);
             startActivity(new Intent(getApplicationContext(), SignInActivity.class));
-            overridePendingTransition(R.anim.slide_to_right, R.anim.slide_from_left);
+//            overridePendingTransition(R.anim.slide_to_right, R.anim.slide_from_left);
             finish();
         }
         if (id == R.id.clear_order) {
@@ -371,18 +371,17 @@ public class SupplierHomeActivity extends AppCompatActivity implements Navigatio
                 @Override
                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                     if (databaseError == null) {
-
-                        PendingOrderFragment.orderBeanList.clear();
-                        PendingOrderFragment.mAdapter.notifyDataSetChanged();
-
-                        DispatchOrderFragment.orderBeanList.clear();
-                        DispatchOrderFragment.mAdapter.notifyDataSetChanged();
-
-                        DeliveredOrderFragment.orderBeanList.clear();
-                        DeliveredOrderFragment.mAdapter.notifyDataSetChanged();
-
-                        CancelOrderFragment.orderBeanList.clear();
-                        CancelOrderFragment.mAdapter.notifyDataSetChanged();
+//                        PendingOrderFragment.orderBeanList.clear();
+//                        PendingOrderFragment.mAdapter.notifyDataSetChanged();
+//
+//                        DispatchOrderFragment.orderBeanList.clear();
+//                        DispatchOrderFragment.mAdapter.notifyDataSetChanged();
+//
+//                        DeliveredOrderFragment.orderBeanList.clear();
+//                        DeliveredOrderFragment.mAdapter.notifyDataSetChanged();
+//
+//                        CancelOrderFragment.orderBeanList.clear();
+//                        CancelOrderFragment.mAdapter.notifyDataSetChanged();
                         Toast.makeText(getApplicationContext(), "Order Cleared", Toast.LENGTH_SHORT).show();
                     }
                 }

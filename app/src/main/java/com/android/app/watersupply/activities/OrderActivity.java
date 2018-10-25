@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.app.watersupply.R;
+import com.android.app.watersupply.activities.customer.CustomerHomeActivity;
 import com.android.app.watersupply.adapter.EmptyBottleAdapter;
 import com.android.app.watersupply.adapter.WaterDetailAdapter;
 import com.android.app.watersupply.bean.Bottle;

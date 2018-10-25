@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.app.watersupply.R;
+import com.android.app.watersupply.activities.customer.CustomerHomeActivity;
+import com.android.app.watersupply.activities.supplier.SupplierHomeActivity;
 import com.android.app.watersupply.bean.UserBean;
 import com.android.app.watersupply.utils.AppUser;
 import com.android.app.watersupply.utils.Helper;

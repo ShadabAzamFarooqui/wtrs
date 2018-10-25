@@ -22,6 +22,7 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.android.app.watersupply.R;
+import com.android.app.watersupply.activities.customer.CustomerHomeActivity;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
