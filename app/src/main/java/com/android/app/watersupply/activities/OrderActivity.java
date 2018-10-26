@@ -292,7 +292,7 @@ public class OrderActivity extends AppCompatActivity {
     }
 
     void todayView() {
-        mToday.setTextColor(getResources().getColor(R.color.colorPrimary));
+        mToday.setTextColor(getResources().getColor(R.color.colorPrimary2));
         mToday.setBackground(getResources().getDrawable(R.drawable.orange_border));
         mTomorrow.setTextColor(getResources().getColor(R.color.black));
         mTomorrow.setBackground(getResources().getDrawable(R.drawable.black_border));
@@ -301,7 +301,7 @@ public class OrderActivity extends AppCompatActivity {
     void tomorrowView() {
         mToday.setTextColor(getResources().getColor(R.color.black));
         mToday.setBackground(getResources().getDrawable(R.drawable.black_border));
-        mTomorrow.setTextColor(getResources().getColor(R.color.colorPrimary));
+        mTomorrow.setTextColor(getResources().getColor(R.color.colorPrimary2));
         mTomorrow.setBackground(getResources().getDrawable(R.drawable.orange_border));
     }
 
@@ -380,7 +380,7 @@ public class OrderActivity extends AppCompatActivity {
         orderBean.setAmount(total.getText().toString());
         orderBean.setAddress(mAddress.getText().toString());
         orderBean.setStatus(ParameterConstants.PENDING);
-        if (!Helper.checkDate(context)&&mToday.getCurrentTextColor()==getResources().getColor(R.color.colorPrimary)) {
+        if (!Helper.checkDate(context)&&mToday.getCurrentTextColor()==getResources().getColor(R.color.colorPrimary2)) {
             tomorrowView();
             mDate_time.setText("" + tomorrow + " Between " + appUser.supplier.getOpenBooking() + " to " + appUser.supplier.getCloseBooking());
             Snackbar.make(coordinatorLayout, "Today's booking has closed", Toast.LENGTH_SHORT).show();

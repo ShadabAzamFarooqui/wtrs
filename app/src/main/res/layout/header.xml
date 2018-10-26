@@ -11,7 +11,8 @@
         android:id="@+id/imageView"
         android:layout_width="80dp"
         android:layout_marginTop="10dp"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
+        android:background="@drawable/circle_red"
         android:src="@drawable/water" />
 
     <TextView

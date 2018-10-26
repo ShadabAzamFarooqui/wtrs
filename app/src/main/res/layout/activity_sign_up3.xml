@@ -27,7 +27,7 @@
                     android:id="@+id/sunday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/colorPrimary"
+                    android:buttonTint="@color/colorPrimary2"
                     android:checked="true"
                     android:text="Sunday" />
 
@@ -35,7 +35,7 @@
                     android:id="@+id/monday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/colorPrimary"
+                    android:buttonTint="@color/colorPrimary2"
                     android:checked="true"
                     android:text="Monday" />
 
@@ -43,7 +43,7 @@
                     android:id="@+id/tuesday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/colorPrimary"
+                    android:buttonTint="@color/colorPrimary2"
                     android:checked="true"
                     android:text="Tuesday" />
 
@@ -51,7 +51,7 @@
                     android:id="@+id/wednesday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/colorPrimary"
+                    android:buttonTint="@color/colorPrimary2"
 
                     android:checked="true"
                     android:text="Wednessday" />
@@ -60,7 +60,7 @@
                     android:id="@+id/thursday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/colorPrimary"
+                    android:buttonTint="@color/colorPrimary2"
                     android:checked="true"
                     android:text="Thursday" />
 
@@ -68,7 +68,7 @@
                     android:id="@+id/friday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/colorPrimary"
+                    android:buttonTint="@color/colorPrimary2"
                     android:checked="true"
                     android:text="Friday" />
 
@@ -76,7 +76,7 @@
                     android:id="@+id/saturday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/colorPrimary"
+                    android:buttonTint="@color/colorPrimary2"
                     android:checked="true"
                     android:text="Saturday" />
             </LinearLayout>

@@ -123,7 +123,7 @@ public class CustomerHomeActivity extends AppCompatActivity implements Navigatio
             public void run() {
                 ParameterConstants.isUpdate = true;
                 ParameterConstants.KEY = "Customer";
-                startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
+                startActivity(new Intent(getApplicationContext(), CustomerProfile.class));
             }
         }, 400);
 

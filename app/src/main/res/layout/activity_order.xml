@@ -175,7 +175,7 @@
                     android:textAlignment="textEnd"
                     android:hint="Total amount"
                     android:text="0.0"
-                    android:textColor="@color/colorPrimary" />
+                    android:textColor="@color/colorPrimary2" />
             </LinearLayout>
 
 

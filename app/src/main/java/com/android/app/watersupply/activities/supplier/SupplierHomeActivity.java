@@ -133,8 +133,7 @@ public class SupplierHomeActivity extends AppCompatActivity implements Navigatio
             public void run() {
                 ParameterConstants.isUpdate=true;
                 ParameterConstants.KEY = "Supplier";
-                drawer.closeDrawer(GravityCompat.START);
-                startActivity(new Intent(getApplicationContext(),SignUp2Activity.class));
+                startActivity(new Intent(getApplicationContext(),SupplierProfile.class));
             }
         },400);
 

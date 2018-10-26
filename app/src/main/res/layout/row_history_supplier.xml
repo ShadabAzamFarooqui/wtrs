@@ -58,7 +58,7 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="Status"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/colorPrimary2"
                         android:textStyle="italic"
                         android:textAlignment="textEnd"
                         android:textSize="12dp" />
@@ -143,7 +143,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Status"
                                 android:visibility="invisible"
-                                android:textColor="@color/colorPrimary"
+                                android:textColor="@color/colorPrimary2"
                                 android:textStyle="italic"
                                 android:textAlignment="textEnd"
                                 android:textSize="12dp" />
@@ -156,7 +156,7 @@
                             android:gravity="start"
                             android:paddingLeft="10dp"
                             android:text="Yoga"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/colorPrimary2"
                             android:textSize="16dp" />
 
                     </LinearLayout>
@@ -351,7 +351,7 @@
             android:paddingLeft="10dp"
             android:text="reason"
             android:textAlignment="textStart"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorPrimary2"
             android:textStyle="italic"
             android:visibility="gone" />
 
@@ -369,7 +369,7 @@
         android:textSize="25dp"
         style="@style/Gotham_Bold"
         android:paddingLeft="80dp"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimary2"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:text="Canceled"/>
