@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimary2"
+    android:background="@color/colorPrimary"
     tools:context="com.android.app.watersupply.activities.SplashActivity">
 
 
@@ -19,12 +19,18 @@
 
 
         <LinearLayout
-            android:layout_width="150dp"
-            android:layout_height="400dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:visibility="visible"
             android:layout_marginTop="50dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/water"/>
+            android:background="@drawable/circle_red">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:background="@drawable/water"/>
+        </LinearLayout>
 
         <com.android.app.watersupply.utils.BuzzTextView
             style="@style/Gotham_Book"
@@ -42,17 +48,18 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
         <com.android.app.watersupply.utils.BuzzTextView
             style="@style/Gotham_Book"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/powered"
-            android:textColor="@color/white"
             android:gravity="center"
-            android:textSize="10sp"
-            android:text="Powered By:"/>
+            android:text="Powered By:"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
 
         <com.android.app.watersupply.utils.BuzzTextView
             android:id="@+id/powered"

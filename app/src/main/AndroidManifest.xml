@@ -61,7 +61,8 @@
 
         <activity android:name=".activities.HistoryActivity" />
         <activity android:name=".activities.customer.CustomerProfile" />
-        <activity android:name=".activities.supplier.SupplierProfile"></activity>
+        <activity android:name=".activities.supplier.SupplierProfile" />
+        <activity android:name=".dummy.MainActivity"></activity>
     </application>
 
 </manifest>

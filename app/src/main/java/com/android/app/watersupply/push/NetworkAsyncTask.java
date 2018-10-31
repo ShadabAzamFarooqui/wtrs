@@ -32,7 +32,7 @@ public class NetworkAsyncTask extends AsyncTask<Void, Void, String> {
     protected String doInBackground(Void... params) {
         try {
             final String apiKey = "AIzaSyDTAq1yked6vjj04DSTEB_ulIuRNaOevp8";
-            URL url = new URL("https://fcm.googleapis.com/fcm/send");
+            URL url = new URL("https://fcm.googleapis.com/fcm/send24");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");

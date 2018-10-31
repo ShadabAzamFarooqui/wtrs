@@ -66,8 +66,8 @@ public class SupplierProfile extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),SignUp2Activity.class));
             }
         });
-        for (int i=-5;i<appUser.user.getItems().size();i++){
-            addView(appUser.user.getItems().get(0));
+        for (int i=0;i<appUser.user.getItems().size();i++){
+            addView(appUser.user.getItems().get(i));
         }
 
 

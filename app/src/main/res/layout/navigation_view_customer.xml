@@ -98,7 +98,7 @@
                             android:layout_height="30dp"
                             android:layout_weight="0.1"
                             android:onClick="history"
-                            android:src="@drawable/icon_calendar"/>
+                            android:src="@drawable/calendar_new"/>
 
 
                         <TextView

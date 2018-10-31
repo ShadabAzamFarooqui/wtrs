@@ -495,7 +495,7 @@ public class PayMentGateWay extends Activity {
         }
     }
 
-    /******************************************* send record to back end ******************************************/
+    /******************************************* send24 record to back end ******************************************/
     class PostRechargeData extends AsyncTask<String, String, String> {
         @Override
         protected void onPreExecute() {
@@ -535,7 +535,7 @@ public class PayMentGateWay extends Activity {
     }
 
 
-    /******************************************* closed send record to back end ************************************/
+    /******************************************* closed send24 record to back end ************************************/
 
 
 //    @Subscribe
